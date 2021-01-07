@@ -5,21 +5,17 @@ using Common;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameState gameState;
-    [SerializeField] private Material black;
-    [SerializeField] private Material white;
-    [SerializeField] private Material playerColor;
-    [SerializeField] private Material aiColor;
-    [SerializeField] private Transform[] slots;
+    [SerializeField] private GameObject[] slots;
 
     private void Awake()
     {
         gameState = new GameState();
-        gameState.playerColor = Colors.White;
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        gameState.Start();
         SetColor();
     }
 
@@ -31,15 +27,30 @@ public class GameManager : MonoBehaviour
 
     private void SetColor()
     {
-        if (gameState.playerColor == Colors.Black)
+        if(ServiceLocator.GetService<Colors>() == Colors.Black)
         {
-            playerColor.color = black.color;
-            aiColor.color = white.color;
+            for(int i = 0; i < 5; i++)
+            {
+                slots[i].GetComponent<SpriteRenderer>().color = Color.black;
+            }
+            for (int i = 6; i < 12; i++)
+            {
+                slots[i].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            slots[12].GetComponent<SpriteRenderer>().color = Color.grey;
         }
-        if (gameState.playerColor == Colors.White)
+
+        if (ServiceLocator.GetService<Colors>() == Colors.White)
         {
-            playerColor.color = white.color;
-            aiColor.color = black.color;
+            for (int i = 0; i < 5; i++)
+            {
+                slots[i].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            for (int i = 6; i < 12; i++)
+            {
+                slots[i].GetComponent<SpriteRenderer>().color = Color.black;
+            }
+            slots[12].GetComponent<SpriteRenderer>().color = Color.grey;
         }
     }
 }
