@@ -9,6 +9,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("Hello World!");
             GameState gameState = new GameState();
+            gameState.Start();
             Console.WriteLine(gameState.IsGameOver);
         }
     }
