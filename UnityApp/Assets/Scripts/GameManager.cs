@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameState gameState;
     [SerializeField] private GameObject[] slots;
+    [SerializeField] private GameObject gameManager;
 
     private void Awake()
     {
@@ -22,7 +23,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        // jogada do jogador
+        PlayerPlay();
+        // atualiza a board, ai joga e atualiza a board.
+        if (!gameState.IsGameOver)
+        {
+            gameState.Update();
+            //Debug.Log("Jogo atualizado");
+        }
     }
 
     private void SetColor()
@@ -52,5 +60,10 @@ public class GameManager : MonoBehaviour
             }
             slots[12].GetComponent<SpriteRenderer>().color = Color.grey;
         }
+    }
+
+    private void PlayerPlay()
+    {
+        gameManager.GetComponent<Player>().PlayerPlay();
     }
 }
