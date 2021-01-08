@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     {
         if (x != 0 && y != 0)
         {
-            gameManager.GetComponent<GameManager>().GameState.PlayPiece(x, y);
+            gameManager.GetComponent<GameManager>().GameState.PlayerTurn(x, y);
             Debug.Log("Jogada feita");
             x = 0;
             y = 0;
