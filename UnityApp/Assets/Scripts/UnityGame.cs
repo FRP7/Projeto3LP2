@@ -26,7 +26,14 @@ public class UnityGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameState.Update();
+        if(gameState.IsPlayerFirst)
+        {
+            PlayerFirst();
+        }
+        else
+        {
+            AIFirst();
+        }
     }
 
     private void PickColor()
@@ -63,5 +70,22 @@ public class UnityGame : MonoBehaviour
                 pieces[i].GetComponent<SpriteRenderer>().color = Color.grey;
             }
         }
+    }
+
+    private void AIFirst()
+    {
+        gameState.Update();
+        PlayerPlay();
+    }
+
+    private void PlayerFirst()
+    {
+        PlayerPlay();
+        gameState.Update();
+    }
+
+    private void PlayerPlay()
+    {
+        Debug.Log("Jogador joga.");
     }
 }
