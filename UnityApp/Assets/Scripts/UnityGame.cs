@@ -10,6 +10,7 @@ public class UnityGame : MonoBehaviour
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
 
+
     private void Awake()
     {
         gameState = new GameState();
