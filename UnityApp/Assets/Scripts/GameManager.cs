@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] slots;
     [SerializeField] private GameObject gameManager;
 
+    public GameState GameState => gameState;
+
     private void Awake()
     {
         gameState = new GameState();
@@ -24,12 +26,12 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // jogada do jogador
-        PlayerPlay();
+        //PlayerPlay();
         // atualiza a board, ai joga e atualiza a board.
-        if (!gameState.IsGameOver)
+        if (!gameState.IsGameOver && PlayerPlay())
         {
             gameState.Update();
-            //Debug.Log("Jogo atualizado");
+            Debug.Log("Jogo atualizado");
         }
     }
 
@@ -62,8 +64,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void PlayerPlay()
+    private bool PlayerPlay()
     {
-        gameManager.GetComponent<Player>().PlayerPlay();
+        return gameManager.GetComponent<Player>().PlayerPlay();
     }
 }
