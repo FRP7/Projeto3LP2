@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Common;
 
 public class UnityGame : MonoBehaviour
 {
     private GameState gameState;
+
     [SerializeField] private GameObject[] pieces;
+
+    // False = black  TRUE = white
+    [SerializeField] private bool isPlayerWhite;
 
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class UnityGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PickColor();
         gameState.Start();
         SetColor();
     }
@@ -23,6 +26,18 @@ public class UnityGame : MonoBehaviour
     void Update()
     {
         gameState.Update();
+    }
+
+    private void PickColor()
+    {
+        if(isPlayerWhite)
+        {
+            gameState.PlayerType = SlotTypes.White;
+        }
+        else if(!isPlayerWhite)
+        {
+            gameState.PlayerType = SlotTypes.Black;
+        }
     }
 
     private void SetColor()
@@ -41,7 +56,7 @@ public class UnityGame : MonoBehaviour
                 pieces[i].GetComponent<SpriteRenderer>().color = Color.white;
             }
 
-            // as peças vazias ficam brancas.
+            // as peças vazias ficam cinzentas.
             if (gameState.GetSlotTypes[i] == SlotTypes.Grey)
             {
                 pieces[i].GetComponent<SpriteRenderer>().color = Color.grey;

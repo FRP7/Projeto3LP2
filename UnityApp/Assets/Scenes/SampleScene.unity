@@ -2641,6 +2641,7 @@ MonoBehaviour:
   - {fileID: 1378742187}
   - {fileID: 259402970}
   - {fileID: 605864437}
+  isPlayerWhite: 0
 --- !u!4 &1129196735
 Transform:
   m_ObjectHideFlags: 0
