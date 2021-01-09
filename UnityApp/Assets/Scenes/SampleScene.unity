@@ -2111,8 +2111,6 @@ MonoBehaviour:
   EmptyObjects:
   - {fileID: 605864437}
   isPlayerWhite: 0
-  piece: -1
-  slot: -1
 --- !u!4 &1129196735
 Transform:
   m_ObjectHideFlags: 0

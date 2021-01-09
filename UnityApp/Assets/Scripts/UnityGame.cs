@@ -20,10 +20,6 @@ public class UnityGame : MonoBehaviour
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
 
-    //testar jogada
-    [SerializeField] public int piece;
-    [SerializeField] public int slot;
-
 
     private void Awake()
     {
