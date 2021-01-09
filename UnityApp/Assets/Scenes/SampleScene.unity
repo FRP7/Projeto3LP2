@@ -2094,21 +2094,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb692ea308a74d9c06c6b28169f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieces:
+  playerObjects:
   - {fileID: 1916458673}
   - {fileID: 1071186273}
   - {fileID: 837819832}
   - {fileID: 2022609363}
   - {fileID: 1894265050}
   - {fileID: 725525331}
+  AIObjects:
   - {fileID: 29931678}
   - {fileID: 1989768284}
   - {fileID: 1058578643}
   - {fileID: 971426093}
   - {fileID: 1378742187}
   - {fileID: 259402970}
+  EmptyObjects:
   - {fileID: 605864437}
   isPlayerWhite: 0
+  piece: -1
+  slot: -1
 --- !u!4 &1129196735
 Transform:
   m_ObjectHideFlags: 0

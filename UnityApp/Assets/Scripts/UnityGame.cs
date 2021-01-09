@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Common;
 
 public class UnityGame : MonoBehaviour
 {
     private GameState gameState;
 
-    [SerializeField] private GameObject[] pieces;
+    [SerializeField] private List<GameObject> playerObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> AIObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> EmptyObjects = new List<GameObject>();
 
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
+
+    //testar jogada
+    [SerializeField] public int piece;
+    [SerializeField] public int slot;
 
 
     private void Awake()
@@ -50,25 +58,32 @@ public class UnityGame : MonoBehaviour
 
     private void SetColor()
     {
-        for(int i = 0; i < pieces.Length; i++)
+        if(gameState.PlayerType == SlotTypes.Black)
         {
-            // as peças do jogador ficam pretas.
-            if(gameState.GetSlotTypes[i] == SlotTypes.Black)
+            foreach(GameObject item in playerObjects)
             {
-                pieces[i].GetComponent<SpriteRenderer>().color = Color.black;
+                item.GetComponent<SpriteRenderer>().color = Color.black;
             }
+            foreach (GameObject item in AIObjects)
+            {
+                item.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        else if (gameState.PlayerType == SlotTypes.White)
+        {
+            foreach (GameObject item in playerObjects)
+            {
+                item.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            foreach (GameObject item in AIObjects)
+            {
+                item.GetComponent<SpriteRenderer>().color = Color.black;
+            }
+        }
 
-            // as peças da ai ficam brancas.
-            if (gameState.GetSlotTypes[i] == SlotTypes.White)
-            {
-                pieces[i].GetComponent<SpriteRenderer>().color = Color.white;
-            }
-
-            // as peças vazias ficam cinzentas.
-            if (gameState.GetSlotTypes[i] == SlotTypes.Grey)
-            {
-                pieces[i].GetComponent<SpriteRenderer>().color = Color.grey;
-            }
+        foreach (GameObject item in EmptyObjects)
+        {
+            item.GetComponent<SpriteRenderer>().color = Color.grey;
         }
     }
 
@@ -86,6 +101,7 @@ public class UnityGame : MonoBehaviour
 
     private void PlayerPlay()
     {
-        Debug.Log("Jogador joga.");
+        PlayerTurn playerTurn = new PlayerTurn();
+        playerTurn.PlayerPlay();
     }
 }
