@@ -11,6 +11,12 @@ public class UnityGame : MonoBehaviour
     [SerializeField] private List<GameObject> AIObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> EmptyObjects = new List<GameObject>();
 
+    // Todas as peças.
+    public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
+    {
+        get => gameState.AllSlots;
+    }
+
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
 
@@ -48,17 +54,17 @@ public class UnityGame : MonoBehaviour
     {
         if(isPlayerWhite)
         {
-            gameState.PlayerType = SlotTypes.White;
+            gameState.PlayerType = SlotColors.White;
         }
         else if(!isPlayerWhite)
         {
-            gameState.PlayerType = SlotTypes.Black;
+            gameState.PlayerType = SlotColors.Black;
         }
     }
 
     private void SetColor()
     {
-        if(gameState.PlayerType == SlotTypes.Black)
+        if(gameState.PlayerType == SlotColors.Black)
         {
             foreach(GameObject item in playerObjects)
             {
@@ -69,7 +75,7 @@ public class UnityGame : MonoBehaviour
                 item.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
-        else if (gameState.PlayerType == SlotTypes.White)
+        else if (gameState.PlayerType == SlotColors.White)
         {
             foreach (GameObject item in playerObjects)
             {
