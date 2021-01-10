@@ -7,16 +7,20 @@ public class UnityGame : MonoBehaviour
 {
     private GameState gameState;
 
-    [SerializeField] private List<GameObject> playerObjects = new List<GameObject>();
-    [SerializeField] private List<GameObject> AIObjects = new List<GameObject>();
-    [SerializeField] private List<GameObject> EmptyObjects = new List<GameObject>();
-
     [SerializeField] private List<GameObject> AllObjects = new List<GameObject>();
+
+    // para testar as jogadas.
+    [Header("Testar as jogadas")]
+    [SerializeField] private int peca = -1;
+    [SerializeField] private int slot = -1;
 
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
-        get => gameState.AllSlots;
+        //get => gameState.AllSlots;
+        get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+        //set => gameState.AllSlots = value;
+        set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
     }
 
     public bool IsPlayerWhite { get => isPlayerWhite; }
@@ -66,15 +70,6 @@ public class UnityGame : MonoBehaviour
     {
         if(gameState.PlayerType == SlotColors.Black)
         {
-            /*foreach(GameObject item in playerObjects)
-            {
-                item.GetComponent<SpriteRenderer>().color = Color.black;
-            }
-            foreach (GameObject item in AIObjects)
-            {
-                item.GetComponent<SpriteRenderer>().color = Color.white;
-            }*/
-
             for(int i = 0; i < GetAllSlots.Count; i++)
             {
                 if(GetAllSlots[i].Item1 == SlotTypes.Player)
@@ -108,21 +103,7 @@ public class UnityGame : MonoBehaviour
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.grey;
                 }
             }
-
-            /*foreach (GameObject item in playerObjects)
-            {
-                item.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            foreach (GameObject item in AIObjects)
-            {
-                item.GetComponent<SpriteRenderer>().color = Color.black;
-            }*/
         }
-
-        /*foreach (GameObject item in EmptyObjects)
-        {
-            item.GetComponent<SpriteRenderer>().color = Color.grey;
-        }*/
     }
 
     private void AIFirst()
@@ -142,7 +123,13 @@ public class UnityGame : MonoBehaviour
     private void PlayerPlay()
     {
         PlayerTurn playerTurn = new PlayerTurn();
+
         // peça, slot
-        playerTurn.PlayerPlay(4, 6);
+        if (peca > -1 && slot > -1)
+        {
+            playerTurn.PlayerPlay(peca, slot);
+            peca = -1;
+            slot = -1;
+        }
     }
 }

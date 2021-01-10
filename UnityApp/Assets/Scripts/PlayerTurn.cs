@@ -17,9 +17,9 @@ public class PlayerTurn
 
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
-        //get => board.AllSlots;
+        //get => unityGame.GetAllSlots;
         get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-        //set => board.AllSlots = value;
+        //set => unityGame.GetAllSlots = value;
         set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
     }
 
@@ -48,16 +48,17 @@ public class PlayerTurn
     {
         Debug.Log("Jogador joga peça.");
 
+
         if (unityGame.IsPlayerWhite)
         {
-            GetAllSlots[slot] = new Tuple<SlotTypes, SlotColors>(SlotTypes.Player, SlotColors.White);
+            GetAllSlots[slot] = Tuple.Create(SlotTypes.Player, SlotColors.White);
         }
-        else if(!unityGame.IsPlayerWhite)
+        else if (!unityGame.IsPlayerWhite)
         {
-            GetAllSlots[slot] = new Tuple<SlotTypes, SlotColors>(SlotTypes.Player, SlotColors.Black);
+            GetAllSlots[slot] = Tuple.Create(SlotTypes.Player, SlotColors.Black);
         }
 
-        GetAllSlots[piece] = new Tuple<SlotTypes, SlotColors>(SlotTypes.None, SlotColors.Grey);
+        GetAllSlots[piece] = Tuple.Create(SlotTypes.None, SlotColors.Grey);
 
         // testar
         /*foreach(var item in GetPlayerLegalPlays)
