@@ -11,11 +11,15 @@ public class UnityGame : MonoBehaviour
     [SerializeField] private List<GameObject> AIObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> EmptyObjects = new List<GameObject>();
 
+    [SerializeField] private List<GameObject> AllObjects = new List<GameObject>();
+
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
         get => gameState.AllSlots;
     }
+
+    public bool IsPlayerWhite { get => isPlayerWhite; }
 
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
@@ -62,48 +66,83 @@ public class UnityGame : MonoBehaviour
     {
         if(gameState.PlayerType == SlotColors.Black)
         {
-            foreach(GameObject item in playerObjects)
+            /*foreach(GameObject item in playerObjects)
             {
                 item.GetComponent<SpriteRenderer>().color = Color.black;
             }
             foreach (GameObject item in AIObjects)
             {
                 item.GetComponent<SpriteRenderer>().color = Color.white;
+            }*/
+
+            for(int i = 0; i < GetAllSlots.Count; i++)
+            {
+                if(GetAllSlots[i].Item1 == SlotTypes.Player)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.black;
+                } else if(GetAllSlots[i].Item1 == SlotTypes.AI)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
+                }
+                else if (GetAllSlots[i].Item1 == SlotTypes.None)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.grey;
+                }
             }
         }
         else if (gameState.PlayerType == SlotColors.White)
         {
-            foreach (GameObject item in playerObjects)
+
+            for (int i = 0; i < GetAllSlots.Count; i++)
+            {
+                if (GetAllSlots[i].Item1 == SlotTypes.Player)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
+                }
+                else if (GetAllSlots[i].Item1 == SlotTypes.AI)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.black;
+                }
+                else if (GetAllSlots[i].Item1 == SlotTypes.None)
+                {
+                    AllObjects[i].GetComponent<SpriteRenderer>().color = Color.grey;
+                }
+            }
+
+            /*foreach (GameObject item in playerObjects)
             {
                 item.GetComponent<SpriteRenderer>().color = Color.white;
             }
             foreach (GameObject item in AIObjects)
             {
                 item.GetComponent<SpriteRenderer>().color = Color.black;
-            }
+            }*/
         }
 
-        foreach (GameObject item in EmptyObjects)
+        /*foreach (GameObject item in EmptyObjects)
         {
             item.GetComponent<SpriteRenderer>().color = Color.grey;
-        }
+        }*/
     }
 
     private void AIFirst()
     {
         gameState.Update();
+        SetColor();
         PlayerPlay();
     }
 
     private void PlayerFirst()
     {
         PlayerPlay();
+        SetColor();
         gameState.Update();
     }
 
     private void PlayerPlay()
     {
         PlayerTurn playerTurn = new PlayerTurn();
-        playerTurn.PlayerPlay();
+        // peça, slot
+        playerTurn.PlayerPlay(4, 6);
     }
 }
