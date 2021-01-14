@@ -8,6 +8,7 @@ using System.Linq;
 public class PlayerTurn
 {
     private UnityGame unityGame = new UnityGame();
+    private GameState gameState = new GameState();
     // Todas as peças.
     public List<Tuple<int, SlotTypes, SlotColors>> GetPlayerLegalPlays
     {
@@ -29,15 +30,27 @@ public class PlayerTurn
     {
         Debug.Log("Turno do jogador.");
         // 1: testar jogada
-        ChoosePiece(piece, slot);
-        PlayPiece(piece, slot);
+        if (ChoosePiece(piece, slot))
+        {
+            if(CheckIfLegal(piece, slot))
+            {
+                PlayPiece(piece, slot);
+            }
+            else
+            {
+                Debug.Log("A jogada não é válida");
+            }
+        }
+        else
+        {
+            Debug.Log("A peça ou a slot não existem");
+        }
     }
 
-    private void ChoosePiece(int piece, int slot)
+    private bool ChoosePiece(int piece, int slot)
     {
         Debug.Log("Chega aqui?");
         // aqui que o bug está no checkplayerlegalplays e deve ser relacionado com o 6
-        GameState gameState = new GameState();
 
         gameState.CheckPlayerLegalPlays(piece);
 
@@ -47,21 +60,29 @@ public class PlayerTurn
        }*/
 
         Debug.Log("Peça escolhida");
+
+        return true;
+    }
+
+    private bool CheckIfLegal(int piece, int slot)
+    {
+        Debug.Log("Verificar se é legal");
+        return gameState.CheckIfLegal(piece, slot);
     }
 
     private void PlayPiece(int piece, int slot)
     {
         Debug.Log("Jogador joga peça.");
-
-        // testar
-        int index = 0;
-        /*foreach (var item in GetPlayerLegalPlays)
+        if(unityGame.IsPlayerWhite)
         {
-            Debug.Log($"Index: {index}. Type: {item.Item1.ToString()}. Color: {item.Item2.ToString()}");
-            index++;
-        }*/
+            gameState.PlayerPlay(piece, slot, true);
+        }
+        else
+        {
+            gameState.PlayerPlay(piece, slot, false);
+        }
 
-        if (unityGame.IsPlayerWhite)
+        /*if (unityGame.IsPlayerWhite)
         {
             GetAllSlots[slot] = Tuple.Create(SlotTypes.Player, SlotColors.White);
         }
@@ -70,26 +91,9 @@ public class PlayerTurn
             GetAllSlots[slot] = Tuple.Create(SlotTypes.Player, SlotColors.Black);
             Debug.Log("Atualizar peças.");
         }
+        GetAllSlots[piece] = Tuple.Create(SlotTypes.None, SlotColors.Grey);
 
-        GetAllSlots[piece - 1] = Tuple.Create(SlotTypes.None, SlotColors.Grey);
-        // testar
-        /*foreach(var item in GetPlayerLegalPlays)
-        {
-            Debug.Log($"Type: {item.Item1}. Color: {item.Item2}");
-        }*/
+        GetPlayerLegalPlays.Clear();*/
 
-        // testar
-        /*int index = 0;
-        foreach (var item in GetPlayerLegalPlays)
-        {
-            Debug.Log($"Index: {index}. Type: {item.Item1}. Color: {item.Item2}");
-            index++;
-        }*/
-        Debug.Log("Tamanho da lista antes: " + GetAllSlots.Count);
-        // esvaziar a lista
-        GetPlayerLegalPlays.Clear();
-        Debug.Log("Tamanho da lista depois: " + GetAllSlots.Count);
-
-        //bug: a peça 6 tem problemas, acho que perde cenas da lista.
     }
 }
