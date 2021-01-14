@@ -10,7 +10,7 @@ public class UnityGame : MonoBehaviour
     [SerializeField] private List<GameObject> AllObjects = new List<GameObject>();
 
     // para testar as jogadas.
-    [Header("Testar as jogadas")]
+    [Header("Testar as jogadas. Peça: número da peça + 1. Slot: número da slot a mover.")]
     [SerializeField] private int peca = -1;
     [SerializeField] private int slot = -1;
 

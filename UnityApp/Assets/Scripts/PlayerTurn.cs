@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using Common;
+using System.Linq;
 
 public class PlayerTurn
 {
@@ -33,7 +35,10 @@ public class PlayerTurn
 
     private void ChoosePiece(int piece, int slot)
     {
+        Debug.Log("Chega aqui?");
+        // aqui que o bug está no checkplayerlegalplays e deve ser relacionado com o 6
         GameState gameState = new GameState();
+
         gameState.CheckPlayerLegalPlays(piece);
 
         /*foreach (var item in ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>())
@@ -48,6 +53,13 @@ public class PlayerTurn
     {
         Debug.Log("Jogador joga peça.");
 
+        // testar
+        int index = 0;
+        /*foreach (var item in GetPlayerLegalPlays)
+        {
+            Debug.Log($"Index: {index}. Type: {item.Item1.ToString()}. Color: {item.Item2.ToString()}");
+            index++;
+        }*/
 
         if (unityGame.IsPlayerWhite)
         {
@@ -56,17 +68,28 @@ public class PlayerTurn
         else if (!unityGame.IsPlayerWhite)
         {
             GetAllSlots[slot] = Tuple.Create(SlotTypes.Player, SlotColors.Black);
+            Debug.Log("Atualizar peças.");
         }
 
-        GetAllSlots[piece] = Tuple.Create(SlotTypes.None, SlotColors.Grey);
-
+        GetAllSlots[piece - 1] = Tuple.Create(SlotTypes.None, SlotColors.Grey);
         // testar
         /*foreach(var item in GetPlayerLegalPlays)
         {
             Debug.Log($"Type: {item.Item1}. Color: {item.Item2}");
         }*/
 
+        // testar
+        /*int index = 0;
+        foreach (var item in GetPlayerLegalPlays)
+        {
+            Debug.Log($"Index: {index}. Type: {item.Item1}. Color: {item.Item2}");
+            index++;
+        }*/
+        Debug.Log("Tamanho da lista antes: " + GetAllSlots.Count);
         // esvaziar a lista
         GetPlayerLegalPlays.Clear();
+        Debug.Log("Tamanho da lista depois: " + GetAllSlots.Count);
+
+        //bug: a peça 6 tem problemas, acho que perde cenas da lista.
     }
 }
