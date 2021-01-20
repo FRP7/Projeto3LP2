@@ -110,28 +110,27 @@ public class UnityGame : MonoBehaviour
 
     private void AIFirst()
     {
-        /*OpponentPlay();
+        OpponentPlay();
         SetColor();
         gameState.Update();
         PlayerPlay();
         SetColor();
-        gameState.Update();*/
-        OpponentPlay();
+        gameState.Update();
     }
 
     private void PlayerFirst()
     {
-        /*PlayerPlay();
+        PlayerPlay();
         SetColor();
         gameState.Update();
         OpponentPlay();
         SetColor();
-        gameState.Update();*/
-        PlayerPlay();
+        gameState.Update();
     }
 
     private void PlayerPlay()
     {
+        Debug.Log("Começa o turno do jogador.");
         PlayerTurn playerTurn = new PlayerTurn();
 
         // peça, slot
@@ -149,6 +148,7 @@ public class UnityGame : MonoBehaviour
 
     private void OpponentPlay()
     {
+        Debug.Log("Começa o turno do oponente.");
         OpponentTurn opponentTurn = new OpponentTurn();
 
         // peça, slot
