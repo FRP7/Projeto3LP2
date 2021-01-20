@@ -13,6 +13,7 @@ public class UnityGame : MonoBehaviour
     [Header("Testar as jogadas. Peça: número da peça + 1. Slot: número da slot a mover.")]
     [SerializeField] private int peca = -1;
     [SerializeField] private int slot = -1;
+    [SerializeField] private bool isPlayed;
 
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
@@ -32,6 +33,7 @@ public class UnityGame : MonoBehaviour
     private void Awake()
     {
         gameState = new GameState();
+        isPlayed = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -108,16 +110,24 @@ public class UnityGame : MonoBehaviour
 
     private void AIFirst()
     {
-        gameState.Update();
+        /*OpponentPlay();
         SetColor();
+        gameState.Update();
         PlayerPlay();
+        SetColor();
+        gameState.Update();*/
+        OpponentPlay();
     }
 
     private void PlayerFirst()
     {
-        PlayerPlay();
+        /*PlayerPlay();
         SetColor();
         gameState.Update();
+        OpponentPlay();
+        SetColor();
+        gameState.Update();*/
+        PlayerPlay();
     }
 
     private void PlayerPlay()
@@ -125,11 +135,32 @@ public class UnityGame : MonoBehaviour
         PlayerTurn playerTurn = new PlayerTurn();
 
         // peça, slot
-        if (peca > -1 && slot > -1)
+        if (isPlayed == true)
         {
             playerTurn.PlayerPlay(peca, slot);
             peca = -1;
             slot = -1;
+            isPlayed = false;
+            SetColor();
+            gameState.Update();
+            OpponentPlay();
+        }
+    }
+
+    private void OpponentPlay()
+    {
+        OpponentTurn opponentTurn = new OpponentTurn();
+
+        // peça, slot
+        if (isPlayed == true)
+        {
+            opponentTurn.OpponentPlay(peca, slot);
+            peca = -1;
+            slot = -1;
+            isPlayed = false;
+            SetColor();
+            gameState.Update();
+            PlayerPlay();
         }
     }
 }

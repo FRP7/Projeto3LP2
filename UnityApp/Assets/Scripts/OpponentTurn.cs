@@ -5,7 +5,7 @@ using UnityEngine;
 using Common;
 using System.Linq;
 
-public class PlayerTurn
+public class OpponentTurn
 {
     private UnityGame unityGame = new UnityGame();
     private GameState gameState = new GameState();
@@ -26,9 +26,9 @@ public class PlayerTurn
         set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
     }
 
-    public void PlayerPlay(int piece, int slot)
+    public void OpponentPlay(int piece, int slot)
     {
-        Debug.Log("Turno do jogador.");
+        Debug.Log("Turno do oponente.");
         // 1: testar jogada
         if (ChoosePiece(piece, slot))
         {
@@ -51,7 +51,7 @@ public class PlayerTurn
     {
         Debug.Log("Chega aqui?");
 
-        gameState.CheckPlayerLegalPlays(piece);
+        gameState.CheckOpponentLegalPlays(piece);
 
         Debug.Log("Peça escolhida");
 
@@ -69,11 +69,12 @@ public class PlayerTurn
         Debug.Log("Jogador joga peça.");
         if(unityGame.IsPlayerWhite)
         {
-            gameState.PlayerPlay(piece, slot, true);
+            gameState.OpponentPlay(piece, slot, true);
         }
         else
         {
-            gameState.PlayerPlay(piece, slot, false);
+            gameState.OpponentPlay(piece, slot, false);
         }
+
     }
 }
