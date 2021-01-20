@@ -14,6 +14,8 @@ public class UnityGame : MonoBehaviour
     [SerializeField] private int peca = -1;
     [SerializeField] private int slot = -1;
     [SerializeField] private bool isPlayed;
+    [SerializeField] private bool isPlayer;
+    [SerializeField] private bool isOpponent;
 
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
@@ -26,6 +28,8 @@ public class UnityGame : MonoBehaviour
 
     public bool IsPlayerWhite { get => isPlayerWhite; }
 
+    public bool IsPlayerFirst => gameState.IsPlayerFirst;
+
     // False = black  TRUE = white
     [SerializeField] private bool isPlayerWhite;
 
@@ -34,6 +38,8 @@ public class UnityGame : MonoBehaviour
     {
         gameState = new GameState();
         isPlayed = false;
+        isPlayer = false;
+        isOpponent = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -41,12 +47,20 @@ public class UnityGame : MonoBehaviour
         PickColor();
         gameState.Start();
         SetColor();
+        if(IsPlayerFirst)
+        {
+            isPlayer = true;
+        }
+        else if(!IsPlayerFirst)
+        {
+            isOpponent = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameState.IsPlayerFirst)
+        if (gameState.IsPlayerFirst)
         {
             PlayerFirst();
         }
@@ -58,11 +72,11 @@ public class UnityGame : MonoBehaviour
 
     private void PickColor()
     {
-        if(isPlayerWhite)
+        if (isPlayerWhite)
         {
             gameState.PlayerType = SlotColors.White;
         }
-        else if(!isPlayerWhite)
+        else if (!isPlayerWhite)
         {
             gameState.PlayerType = SlotColors.Black;
         }
@@ -70,14 +84,15 @@ public class UnityGame : MonoBehaviour
 
     private void SetColor()
     {
-        if(gameState.PlayerType == SlotColors.Black)
+        if (gameState.PlayerType == SlotColors.Black)
         {
-            for(int i = 0; i < GetAllSlots.Count; i++)
+            for (int i = 0; i < GetAllSlots.Count; i++)
             {
-                if(GetAllSlots[i].Item1 == SlotTypes.Player)
+                if (GetAllSlots[i].Item1 == SlotTypes.Player)
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.black;
-                } else if(GetAllSlots[i].Item1 == SlotTypes.AI)
+                }
+                else if (GetAllSlots[i].Item1 == SlotTypes.AI)
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
                 }
@@ -110,22 +125,36 @@ public class UnityGame : MonoBehaviour
 
     private void AIFirst()
     {
-        OpponentPlay();
-        SetColor();
-        gameState.Update();
-        PlayerPlay();
-        SetColor();
-        gameState.Update();
+        //isOpponent = true;
+        if (isOpponent)
+        {
+            OpponentPlay();
+            SetColor();
+            gameState.Update();
+        }
+        else if (isPlayer)
+        {
+            PlayerPlay();
+            SetColor();
+            gameState.Update();
+        }
     }
 
     private void PlayerFirst()
     {
-        PlayerPlay();
-        SetColor();
-        gameState.Update();
-        OpponentPlay();
-        SetColor();
-        gameState.Update();
+        //isPlayer = true;
+        if (isPlayer)
+        {
+            PlayerPlay();
+            SetColor();
+            gameState.Update();
+        }
+        else if (isOpponent)
+        {
+            OpponentPlay();
+            SetColor();
+            gameState.Update();
+        }
     }
 
     private void PlayerPlay()
@@ -140,9 +169,11 @@ public class UnityGame : MonoBehaviour
             peca = -1;
             slot = -1;
             isPlayed = false;
+            isPlayer = false;
+            isOpponent = true;
             SetColor();
             gameState.Update();
-            OpponentPlay();
+            //OpponentPlay();
         }
     }
 
@@ -159,8 +190,10 @@ public class UnityGame : MonoBehaviour
             slot = -1;
             isPlayed = false;
             SetColor();
+            isOpponent = false;
+            isPlayer = true;
             gameState.Update();
-            PlayerPlay();
+            //PlayerPlay();
         }
     }
 }
