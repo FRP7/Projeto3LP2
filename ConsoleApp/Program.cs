@@ -3,14 +3,15 @@ using Common;
 
 namespace ConsoleApp
 {
-    class Program
+    /// <summary>
+    /// Begin the game.
+    /// </summary>
+    public class Program
     {
-        static void Main()
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
-            GameState gameState = new GameState();
-            gameState.Start();
-            Console.WriteLine(gameState.IsGameOver);
+            Menu menu = new Menu();
+            menu.MainMenu();
         }
     }
 }
