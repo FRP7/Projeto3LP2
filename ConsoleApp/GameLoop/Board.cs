@@ -105,6 +105,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 19)
                 {
                     Console.WriteLine($"-");
@@ -115,6 +119,10 @@ namespace ConsoleApp
             {
                 Console.SetCursorPosition(i, 3);
                 if (i == 4)
+                {
+                    Console.WriteLine($"-");
+                }
+                else if (i == 11)
                 {
                     Console.WriteLine($"-");
                 }
@@ -169,6 +177,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 15)
                 {
                     Console.WriteLine($"-");
@@ -179,6 +191,10 @@ namespace ConsoleApp
             {
                 Console.SetCursorPosition(i, 7);
                 if (i == 8)
+                {
+                    Console.WriteLine($"-");
+                }
+                else if (i == 11)
                 {
                     Console.WriteLine($"-");
                 }
@@ -195,6 +211,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 13)
                 {
                     Console.WriteLine($"-");
@@ -205,6 +225,10 @@ namespace ConsoleApp
             {
                 Console.SetCursorPosition(i, 9);
                 if (i == 10)
+                {
+                    Console.WriteLine($"-");
+                }
+                else if (i == 11)
                 {
                     Console.WriteLine($"-");
                 }
@@ -234,6 +258,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 12)
                 {
                     Console.WriteLine($"-");
@@ -247,6 +275,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 13)
                 {
                     Console.WriteLine($"-");
@@ -257,6 +289,10 @@ namespace ConsoleApp
             {
                 Console.SetCursorPosition(i, 13);
                 if (i == 8)
+                {
+                    Console.WriteLine($"-");
+                }
+                else if (i == 11)
                 {
                     Console.WriteLine($"-");
                 }
@@ -311,6 +347,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 17)
                 {
                     Console.WriteLine($"-");
@@ -324,6 +364,10 @@ namespace ConsoleApp
                 {
                     Console.WriteLine($"-");
                 }
+                else if (i == 11)
+                {
+                    Console.WriteLine($"-");
+                }
                 else if (i == 18)
                 {
                     Console.WriteLine($"-");
@@ -334,6 +378,10 @@ namespace ConsoleApp
             {
                 Console.SetCursorPosition(i, 18);
                 if (i == 3)
+                {
+                    Console.WriteLine($"-");
+                }
+                else if (i == 11)
                 {
                     Console.WriteLine($"-");
                 }
@@ -381,10 +429,10 @@ namespace ConsoleApp
 
             //Console.SetCursorPosition(0, 21);
             //Console.WriteLine("Escolha a peça e casa: ");
-            Console.SetCursorPosition(0, 22);
+            /*Console.SetCursorPosition(0, 22);
             Console.WriteLine("Peça: " + UserInput.Piece);
             Console.SetCursorPosition(0, 23);
-            Console.WriteLine("Casa: " + UserInput.Slot);
+            Console.WriteLine("Casa: " + UserInput.Slot);*/
 
         }
 
