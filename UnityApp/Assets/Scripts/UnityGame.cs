@@ -20,9 +20,7 @@ public class UnityGame : MonoBehaviour
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
-        //get => gameState.AllSlots;
         get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-        //set => gameState.AllSlots = value;
         set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
     }
 
@@ -73,11 +71,11 @@ public class UnityGame : MonoBehaviour
         }
         else if(gameState.CheckWin() == Victory.Opponent)
         {
-            Debug.Log("Ganhou o oponente");
+            // ganhou o oponente
         }
         else if (gameState.CheckWin() == Victory.Player)
         {
-            Debug.Log("Ganhou o jogador");
+            // ganhou o jogador
         }
     }
 
@@ -103,7 +101,7 @@ public class UnityGame : MonoBehaviour
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.black;
                 }
-                else if (GetAllSlots[i].Item1 == SlotTypes.AI)
+                else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
                 }
@@ -122,7 +120,7 @@ public class UnityGame : MonoBehaviour
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
                 }
-                else if (GetAllSlots[i].Item1 == SlotTypes.AI)
+                else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
                 {
                     AllObjects[i].GetComponent<SpriteRenderer>().color = Color.black;
                 }
@@ -136,35 +134,29 @@ public class UnityGame : MonoBehaviour
 
     private void AIFirst()
     {
-        //isOpponent = true;
         if (isOpponent)
         {
             OpponentPlay();
             SetColor();
-            gameState.Update();
         }
         else if (isPlayer)
         {
             PlayerPlay();
             SetColor();
-            gameState.Update();
         }
     }
 
     private void PlayerFirst()
     {
-        //isPlayer = true;
         if (isPlayer)
         {
             PlayerPlay();
             SetColor();
-            gameState.Update();
         }
         else if (isOpponent)
         {
             OpponentPlay();
             SetColor();
-            gameState.Update();
         }
     }
 
@@ -173,7 +165,6 @@ public class UnityGame : MonoBehaviour
         Debug.Log("Começa o turno do jogador.");
         PlayerTurn playerTurn = new PlayerTurn();
 
-        // peça, slot
         if (isPlayed == true)
         {
             playerTurn.PlayerPlay(peca, slot);
@@ -183,8 +174,6 @@ public class UnityGame : MonoBehaviour
             isPlayer = false;
             isOpponent = true;
             SetColor();
-            gameState.Update();
-            //OpponentPlay();
         }
     }
 
@@ -193,7 +182,6 @@ public class UnityGame : MonoBehaviour
         Debug.Log("Começa o turno do oponente.");
         OpponentTurn opponentTurn = new OpponentTurn();
 
-        // peça, slot
         if (isPlayed == true)
         {
             opponentTurn.OpponentPlay(peca, slot);
@@ -203,8 +191,6 @@ public class UnityGame : MonoBehaviour
             SetColor();
             isOpponent = false;
             isPlayer = true;
-            gameState.Update();
-            //PlayerPlay();
         }
     }
 }
