@@ -43,13 +43,13 @@ namespace ConsoleApp
             // legendas
             Console.SetCursorPosition(2, 0);
             // 10
-            Console.WriteLine("Q");
+            Console.WriteLine("10");
             // 11
             Console.SetCursorPosition(11, 0);
             // 12
-            Console.WriteLine("W");
+            Console.WriteLine("11");
             Console.SetCursorPosition(20, 0);
-            Console.WriteLine("E");
+            Console.WriteLine("12");
             Console.SetCursorPosition(4, 5);
             Console.WriteLine("9");
             Console.SetCursorPosition(11, 4);
