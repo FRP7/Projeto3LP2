@@ -20,6 +20,8 @@ namespace ConsoleApp
             set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
         }
 
+        public bool IsPlayed { get; set; }
+
         public void PlayerPlay(int piece, int slot)
         {
             if (ChoosePiece(piece, slot))
@@ -27,6 +29,7 @@ namespace ConsoleApp
                 if (CheckIfLegal(piece, slot))
                 {
                     PlayPiece(piece, slot);
+                    IsPlayed = true;
                 }
                 else
                 {
@@ -61,6 +64,11 @@ namespace ConsoleApp
             {
                 gameState.PlayerPlay(piece, slot, false);
             }
+        }
+
+        public PlayerTurn()
+        {
+            IsPlayed = false;
         }
     }
 }

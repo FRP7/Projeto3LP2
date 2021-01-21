@@ -220,8 +220,11 @@ namespace ConsoleApp
             render.RenderGame();
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
-                isOpponent = false;
-                isPlayer = true;
+                if (opponentTurn.IsPlayed)
+                {
+                    isOpponent = false;
+                    isPlayer = true;
+                }
                 UserInput.Piece = -1;
                 UserInput.Slot = -1;
             }
@@ -236,8 +239,11 @@ namespace ConsoleApp
             render.RenderGame();
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
-                isPlayer = false;
-                isOpponent = true;
+                if (playerTurn.IsPlayed)
+                {
+                    isPlayer = false;
+                    isOpponent = true;
+                }
                 UserInput.Piece = -1;
                 UserInput.Slot = -1;
             }
