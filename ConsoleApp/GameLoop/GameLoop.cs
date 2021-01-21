@@ -213,24 +213,34 @@ namespace ConsoleApp
 
         private void OpponentPlay()
         {
-                OpponentTurn opponentTurn = new OpponentTurn();
-                CheckUserInput();
-                opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
-                update.UpdateGame();
-                render.RenderGame();
+            OpponentTurn opponentTurn = new OpponentTurn();
+            CheckUserInput();
+            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
+            update.UpdateGame();
+            render.RenderGame();
+            if (UserInput.Piece != -1 && UserInput.Slot != -1)
+            {
                 isOpponent = false;
                 isPlayer = true;
+                UserInput.Piece = -1;
+                UserInput.Slot = -1;
+            }
         }
 
         private void PlayerPlay()
         {
-                PlayerTurn playerTurn = new PlayerTurn();
-                CheckUserInput();
-                playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
-                update.UpdateGame();
-                render.RenderGame();
+            PlayerTurn playerTurn = new PlayerTurn();
+            CheckUserInput();
+            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
+            update.UpdateGame();
+            render.RenderGame();
+            if (UserInput.Piece != -1 && UserInput.Slot != -1)
+            {
                 isPlayer = false;
                 isOpponent = true;
+                UserInput.Piece = -1;
+                UserInput.Slot = -1;
+            }
         }
 
         public GameLoop(bool isPlayerWhite)

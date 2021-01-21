@@ -73,5 +73,11 @@ namespace ConsoleApp
                 }
             }
         }
+
+        public UserInput()
+        {
+            piece = -1;
+            slot = -1;
+        }
     }
 }
