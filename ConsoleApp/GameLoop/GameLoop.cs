@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using Common;
+using System.Collections.Generic;
 
 namespace ConsoleApp
 {
@@ -36,6 +38,21 @@ namespace ConsoleApp
         // Array of gameobjects.
         private readonly GameObject[] gameObjects = { new Board() };
 
+        private GameState gameState;
+
+        public static bool IsPlayerWhite;
+
+        public bool IsPlayerFirst => gameState.IsPlayerFirst;
+
+        public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
+        {
+            get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+            set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+        }
+
+        public static bool isPlayer;
+        public static bool isOpponent;
+
         /// <summary>
         /// The game loop.
         /// </summary>
@@ -50,15 +67,26 @@ namespace ConsoleApp
         /// </summary>
         private void Start()
         {
+            isPlayer = false;
+            isOpponent = false;
             update = new Update();
             render = new Render();
             userInput = new UserInput();
             gameOver = new GameOver();
             gameWon = new GameWon();
-
+            gameState = new GameState();
+            gameState.Start();
+            SetColor();
             gameObjects[0].Start();
-
-            Console.WriteLine("Game initialized.");
+            //Console.WriteLine("Game initialized.");
+            if (IsPlayerFirst)
+            {
+                isPlayer = true;
+            }
+            else if (!IsPlayerFirst)
+            {
+                isOpponent = true;
+            }
         }
 
         /// <summary>
@@ -66,24 +94,149 @@ namespace ConsoleApp
         /// </summary>
         private void Update()
         {
-            while(!IsGameOver | !IsGameWon)
+            bool isGame = true;
+            while (isGame)
             {
-                userInput.CheckUserInput();
-                update.UpdateGame();
-                render.RenderGame();
-            }
-
-            // If the player loses.
-            if(IsGameOver)
-            {
-                gameOver.GameOverMenu();
-            }
-
-            // If the player wins.
-            if(IsGameWon)
-            {
-                gameWon.GameWonMenu();
+                if (gameState.CheckWin() == Victory.None)
+                {
+                    if (gameState.IsPlayerFirst)
+                    {
+                        PlayerFirst();
+                    }
+                    else
+                    {
+                        OpponentFirst();
+                    }
+                }
+                else if (gameState.CheckWin() == Victory.Opponent)
+                {
+                    // ganhou o oponente
+                    gameOver.GameOverMenu();
+                    isGame = false;
+                }
+                else if (gameState.CheckWin() == Victory.Player)
+                {
+                    // ganhou o jogador
+                    gameWon.GameWonMenu();
+                    isGame = false;
+                }
             }
         }
+
+        private void CheckUserInput()
+        {
+            Thread thread = new Thread(userInput.CheckUserInput);
+            thread.Start();
+            thread.Join();
+        }
+
+        private void SetColor()
+        {
+            if (!IsPlayerWhite)
+            {
+                for (int i = 0; i < GetAllSlots.Count; i++)
+                {
+                    if (GetAllSlots[i].Item1 == SlotTypes.Player)
+                    {
+                        Board.Slots[i] = 'B';
+                    }
+                    else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
+                    {
+                        Board.Slots[i] = 'W';
+                    }
+                    else if (GetAllSlots[i].Item1 == SlotTypes.None)
+                    {
+                        Board.Slots[i] = 'X';
+                    }
+                }
+            }
+
+            if (IsPlayerWhite)
+            {
+                for (int i = 0; i < GetAllSlots.Count; i++)
+                {
+                    if (GetAllSlots[i].Item1 == SlotTypes.Player)
+                    {
+                        Board.Slots[i] = 'W';
+                    }
+                    else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
+                    {
+                        Board.Slots[i] = 'B';
+                    }
+                    else if (GetAllSlots[i].Item1 == SlotTypes.None)
+                    {
+                        Board.Slots[i] = 'X';
+                    }
+                }
+            }
+        }
+
+        private void OpponentFirst()
+        {
+            if (isOpponent)
+            {
+                while (isOpponent)
+                {
+                    OpponentPlay();
+                    SetColor();
+                }
+            }
+            else if (isPlayer)
+            {
+                while (isPlayer)
+                {
+                    PlayerPlay();
+                    SetColor();
+                }
+            }
+        }
+
+        private void PlayerFirst()
+        {
+            if (isPlayer)
+            {
+                while (isPlayer)
+                {
+                    PlayerPlay();
+                    SetColor();
+                }
+            }
+            else if (isOpponent)
+            {
+                while (isOpponent)
+                {
+                    OpponentPlay();
+                    SetColor();
+                }
+            }
+        }
+
+        private void OpponentPlay()
+        {
+                OpponentTurn opponentTurn = new OpponentTurn();
+                CheckUserInput();
+                opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
+                update.UpdateGame();
+                render.RenderGame();
+                isOpponent = false;
+                isPlayer = true;
+        }
+
+        private void PlayerPlay()
+        {
+                PlayerTurn playerTurn = new PlayerTurn();
+                CheckUserInput();
+                playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
+                update.UpdateGame();
+                render.RenderGame();
+                isPlayer = false;
+                isOpponent = true;
+        }
+
+        public GameLoop(bool isPlayerWhite)
+        {
+            IsPlayerWhite = isPlayerWhite;
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace ConsoleApp
     public class Menu
     {
         // Enter the game.
-        private GameLoop gameLoop;
+        private SetupGame setupGame;
 
         /// <summary>
         /// Main menu.
@@ -18,7 +18,7 @@ namespace ConsoleApp
         public void MainMenu()
         {
             // Enter the game.
-            gameLoop.Game();
+            setupGame.SetGame();
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace ConsoleApp
         /// </summary>
         public Menu()
         {
-            gameLoop = new GameLoop();
+            setupGame = new SetupGame();
         }
     }
 }

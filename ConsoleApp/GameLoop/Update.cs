@@ -17,7 +17,7 @@ namespace ConsoleApp
         public void UpdateGame()
         {
             gameObjects[0].Update();
-            Console.WriteLine("Game updated");
+            //Console.WriteLine("Game updated");
         }
 
         /// <summary>

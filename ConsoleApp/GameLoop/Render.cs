@@ -17,7 +17,7 @@ namespace ConsoleApp
         public void RenderGame()
         {
             gameObjects[0].Render();
-            Console.WriteLine("Game drawn");
+            //Console.WriteLine("Game drawn");
         }
 
         /// <summary>
