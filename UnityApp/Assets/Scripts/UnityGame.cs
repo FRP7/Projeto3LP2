@@ -42,7 +42,7 @@ public class UnityGame : MonoBehaviour
         isOpponent = false;
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         PickColor();
         gameState.Start();
@@ -58,15 +58,26 @@ public class UnityGame : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (gameState.IsPlayerFirst)
+        if (gameState.CheckWin() == Victory.None)
         {
-            PlayerFirst();
+            if (gameState.IsPlayerFirst)
+            {
+                PlayerFirst();
+            }
+            else
+            {
+                AIFirst();
+            }
         }
-        else
+        else if(gameState.CheckWin() == Victory.Opponent)
         {
-            AIFirst();
+            Debug.Log("Ganhou o oponente");
+        }
+        else if (gameState.CheckWin() == Victory.Player)
+        {
+            Debug.Log("Ganhou o jogador");
         }
     }
 
