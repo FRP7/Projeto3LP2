@@ -4,7 +4,6 @@ using Common;
 
 public class PlayerTurn
 {
-    private UnityGame unityGame = new UnityGame();
     private GameState gameState = new GameState();
 
     public List<Tuple<int, SlotTypes, SlotColors>> GetPlayerLegalPlays
@@ -19,22 +18,17 @@ public class PlayerTurn
         set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
     }
 
-    public void PlayerPlay(int piece, int slot)
+    public bool IsPlayed { get; set; }
+
+    public void PlayerPlay(int piece, int slot, bool isPlayerWhite)
     {
         if (ChoosePiece(piece, slot))
         {
-            if(CheckIfLegal(piece, slot))
+            if (CheckIfLegal(piece, slot))
             {
-                PlayPiece(piece, slot);
+                PlayPiece(piece, slot, isPlayerWhite);
+                IsPlayed = true;
             }
-            else
-            {
-                // a jogada não é válida
-            }
-        }
-        else
-        {
-            // a peça ou a slot não existem
         }
     }
 
@@ -50,9 +44,9 @@ public class PlayerTurn
         return gameState.CheckIfLegal(piece, slot);
     }
 
-    private void PlayPiece(int piece, int slot)
+    private void PlayPiece(int piece, int slot, bool isPlayerWhite)
     {
-        if(unityGame.IsPlayerWhite)
+        if (isPlayerWhite)
         {
             gameState.PlayerPlay(piece, slot, true);
         }
@@ -60,5 +54,10 @@ public class PlayerTurn
         {
             gameState.PlayerPlay(piece, slot, false);
         }
+    }
+
+    public PlayerTurn()
+    {
+        IsPlayed = false;
     }
 }

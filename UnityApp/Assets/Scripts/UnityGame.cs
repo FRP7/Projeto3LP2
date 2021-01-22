@@ -75,11 +75,11 @@ public class UnityGame : MonoBehaviour
         PickColor();
         gameState.Start();
         SetColor();
-        if(IsPlayerFirst)
+        if (IsPlayerFirst)
         {
             isPlayer = true;
         }
-        else if(!IsPlayerFirst)
+        else if (!IsPlayerFirst)
         {
             isOpponent = true;
         }
@@ -99,7 +99,7 @@ public class UnityGame : MonoBehaviour
                 AIFirst();
             }
         }
-        else if(gameState.CheckWin() == Victory.Opponent)
+        else if (gameState.CheckWin() == Victory.Opponent)
         {
             // ganhou o oponente
         }
@@ -197,10 +197,11 @@ public class UnityGame : MonoBehaviour
 
         if (isPlayed == true)
         {
-            playerTurn.PlayerPlay(peca, slot);
+            playerTurn.PlayerPlay(peca, slot, isPlayerWhite);
             peca = -1;
             slot = -1;
             isPlayed = false;
+            //playerTurn.IsPlayed = true;
             isPlayer = false;
             isOpponent = true;
             SetColor();
@@ -214,10 +215,11 @@ public class UnityGame : MonoBehaviour
 
         if (isPlayed == true)
         {
-            opponentTurn.OpponentPlay(peca, slot);
+            opponentTurn.OpponentPlay(peca, slot, isPlayerWhite);
             peca = -1;
             slot = -1;
             isPlayed = false;
+            //opponentTurn.IsPlayed = true;
             SetColor();
             isOpponent = false;
             isPlayer = true;
