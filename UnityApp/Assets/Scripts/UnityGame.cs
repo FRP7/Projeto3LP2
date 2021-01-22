@@ -17,6 +17,36 @@ public class UnityGame : MonoBehaviour
     [SerializeField] private bool isPlayer;
     [SerializeField] private bool isOpponent;
 
+    public bool IsPlayer
+    {
+        get => isPlayer;
+        set => isOpponent = value;
+    }
+
+    public bool IsOpponent
+    {
+        get => isOpponent;
+        set => isOpponent = value;
+    }
+
+    public int Peca
+    {
+        get => peca;
+        set => peca = value;
+    }
+
+    public int Slot
+    {
+        get => slot;
+        set => slot = value;
+    }
+
+    public bool IsPlayed
+    {
+        get => isPlayed;
+        set => isPlayed = value;
+    }
+
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
