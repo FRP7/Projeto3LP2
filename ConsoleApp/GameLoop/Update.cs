@@ -8,19 +8,28 @@ namespace ConsoleApp
     /// </summary>
     public class Update
     {
+        public delegate void PlayGameLoop();
+
+        public readonly PlayGameLoop playGameLoop;
+
         /// <summary>
         /// Update the logic of the game.
         /// </summary>
         public void UpdateGame()
         {
             //Console.WriteLine("Game updated");
+            playGameLoop.Invoke();
         }
 
         /// <summary>
         /// Initialize variables.
         /// </summary>
-        public Update()
+        public Update(params PlayGameLoop[] play)
         {
+            foreach(PlayGameLoop item in play)
+            {
+                playGameLoop += item;
+            }
         }
     }
 }

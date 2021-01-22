@@ -66,7 +66,6 @@ namespace ConsoleApp
         {
             isPlayer = false;
             isOpponent = false;
-            update = new Update();
             render = new Render();
             userInput = new UserInput();
             gameOver = new GameOver();
@@ -171,18 +170,24 @@ namespace ConsoleApp
         {
             if (isOpponent)
             {
+                update = new Update(
+                    CheckUserInput, OpponentPlay, SetColor);
+
                 while (isOpponent)
                 {
-                    OpponentPlay();
-                    SetColor();
+                    update.UpdateGame();
+                    render.RenderGame();
                 }
             }
             else if (isPlayer)
             {
+                update = new Update(
+                  CheckUserInput, PlayerPlay, SetColor);
+
                 while (isPlayer)
                 {
-                    PlayerPlay();
-                    SetColor();
+                    update.UpdateGame();
+                    render.RenderGame();
                 }
             }
         }
@@ -191,18 +196,24 @@ namespace ConsoleApp
         {
             if (isPlayer)
             {
+                update = new Update(
+                 CheckUserInput, PlayerPlay, SetColor);
+
                 while (isPlayer)
                 {
-                    PlayerPlay();
-                    SetColor();
+                    update.UpdateGame();
+                    render.RenderGame();
                 }
             }
             else if (isOpponent)
             {
+                update = new Update(
+                 CheckUserInput, OpponentPlay, SetColor);
+
                 while (isOpponent)
                 {
-                    OpponentPlay();
-                    SetColor();
+                    update.UpdateGame();
+                    render.RenderGame();
                 }
             }
         }
@@ -210,10 +221,7 @@ namespace ConsoleApp
         private void OpponentPlay()
         {
             OpponentTurn opponentTurn = new OpponentTurn();
-            CheckUserInput();
             opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
-            update.UpdateGame();
-            render.RenderGame();
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
                 if (opponentTurn.IsPlayed)
@@ -229,10 +237,7 @@ namespace ConsoleApp
         private void PlayerPlay()
         {
             PlayerTurn playerTurn = new PlayerTurn();
-            CheckUserInput();
             playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
-            update.UpdateGame();
-            render.RenderGame();
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
                 if (playerTurn.IsPlayed)
