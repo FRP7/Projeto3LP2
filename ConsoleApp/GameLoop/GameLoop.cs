@@ -89,33 +89,11 @@ namespace ConsoleApp
         /// </summary>
         private void Update()
         {
-            bool isGame = true;
-            while (isGame)
-            {
-                if (gameState.CheckWin() == Victory.None)
-                {
-                    if (gameState.IsPlayerFirst)
-                    {
-                        PlayerFirst();
-                    }
-                    else
-                    {
-                        OpponentFirst();
-                    }
-                }
-                else if (gameState.CheckWin() == Victory.Opponent)
-                {
-                    // ganhou o oponente
-                    gameOver.GameOverMenu();
-                    isGame = false;
-                }
-                else if (gameState.CheckWin() == Victory.Player)
-                {
-                    // ganhou o jogador
-                    gameWon.GameWonMenu();
-                    isGame = false;
-                }
-            }
+            update = new Update(IsPlayerFirst, IsPlayerWhite, 
+                gameState.CheckWin, RenderGame, CheckUserInput);
+            update.UpdateGame();
+            //render.RenderGame();
+
         }
 
         private void CheckUserInput()
@@ -123,6 +101,11 @@ namespace ConsoleApp
             Thread thread = new Thread(userInput.CheckUserInput);
             thread.Start();
             thread.Join();
+        }
+
+        private void RenderGame()
+        {
+            render.RenderGame();
         }
 
         private void SetColor()
@@ -166,89 +149,6 @@ namespace ConsoleApp
             }
         }
 
-        private void OpponentFirst()
-        {
-            if (isOpponent)
-            {
-                update = new Update(
-                    CheckUserInput, OpponentPlay, SetColor);
-
-                while (isOpponent)
-                {
-                    update.UpdateGame();
-                    render.RenderGame();
-                }
-            }
-            else if (isPlayer)
-            {
-                update = new Update(
-                  CheckUserInput, PlayerPlay, SetColor);
-
-                while (isPlayer)
-                {
-                    update.UpdateGame();
-                    render.RenderGame();
-                }
-            }
-        }
-
-        private void PlayerFirst()
-        {
-            if (isPlayer)
-            {
-                update = new Update(
-                 CheckUserInput, PlayerPlay, SetColor);
-
-                while (isPlayer)
-                {
-                    update.UpdateGame();
-                    render.RenderGame();
-                }
-            }
-            else if (isOpponent)
-            {
-                update = new Update(
-                 CheckUserInput, OpponentPlay, SetColor);
-
-                while (isOpponent)
-                {
-                    update.UpdateGame();
-                    render.RenderGame();
-                }
-            }
-        }
-
-        private void OpponentPlay()
-        {
-            OpponentTurn opponentTurn = new OpponentTurn();
-            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
-            if (UserInput.Piece != -1 && UserInput.Slot != -1)
-            {
-                if (opponentTurn.IsPlayed)
-                {
-                    isOpponent = false;
-                    isPlayer = true;
-                }
-                UserInput.Piece = -1;
-                UserInput.Slot = -1;
-            }
-        }
-
-        private void PlayerPlay()
-        {
-            PlayerTurn playerTurn = new PlayerTurn();
-            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
-            if (UserInput.Piece != -1 && UserInput.Slot != -1)
-            {
-                if (playerTurn.IsPlayed)
-                {
-                    isPlayer = false;
-                    isOpponent = true;
-                }
-                UserInput.Piece = -1;
-                UserInput.Slot = -1;
-            }
-        }
 
         public GameLoop(bool isPlayerWhite)
         {
