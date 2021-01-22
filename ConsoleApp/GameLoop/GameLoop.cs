@@ -35,9 +35,6 @@ namespace ConsoleApp
         // Access GameWon class.
         private GameWon gameWon;
 
-        // Array of gameobjects.
-        private readonly GameObject[] gameObjects = { new Board() };
-
         private GameState gameState;
 
         public static bool IsPlayerWhite;
@@ -77,7 +74,6 @@ namespace ConsoleApp
             gameState = new GameState();
             gameState.Start();
             SetColor();
-            gameObjects[0].Start();
             //Console.WriteLine("Game initialized.");
             if (IsPlayerFirst)
             {
@@ -138,15 +134,15 @@ namespace ConsoleApp
                 {
                     if (GetAllSlots[i].Item1 == SlotTypes.Player)
                     {
-                        Board.Slots[i] = 'B';
+                        Render.Slots[i] = 'B';
                     }
                     else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
                     {
-                        Board.Slots[i] = 'W';
+                        Render.Slots[i] = 'W';
                     }
                     else if (GetAllSlots[i].Item1 == SlotTypes.None)
                     {
-                        Board.Slots[i] = 'X';
+                        Render.Slots[i] = 'X';
                     }
                 }
             }
@@ -157,15 +153,15 @@ namespace ConsoleApp
                 {
                     if (GetAllSlots[i].Item1 == SlotTypes.Player)
                     {
-                        Board.Slots[i] = 'W';
+                        Render.Slots[i] = 'W';
                     }
                     else if (GetAllSlots[i].Item1 == SlotTypes.Opponent)
                     {
-                        Board.Slots[i] = 'B';
+                        Render.Slots[i] = 'B';
                     }
                     else if (GetAllSlots[i].Item1 == SlotTypes.None)
                     {
-                        Board.Slots[i] = 'X';
+                        Render.Slots[i] = 'X';
                     }
                 }
             }
