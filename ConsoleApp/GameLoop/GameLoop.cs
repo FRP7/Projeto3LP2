@@ -10,16 +10,6 @@ namespace ConsoleApp
     /// </summary>
     public class GameLoop
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether the game is over.
-        /// </summary>
-        public static bool IsGameOver { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the game is won.
-        /// </summary>
-        public static bool IsGameWon { get; set; }
-
         // Access Update class.
         private Update update;
 
@@ -29,15 +19,9 @@ namespace ConsoleApp
         // Access UserInput class.
         private UserInput userInput;
 
-        // Access GameOver class.
-        private GameOver gameOver;
-
-        // Access GameWon class.
-        private GameWon gameWon;
-
         private GameState gameState;
 
-        public static bool IsPlayerWhite;
+        public bool IsPlayerWhite;
 
         public bool IsPlayerFirst => gameState.IsPlayerFirst;
 
@@ -47,8 +31,8 @@ namespace ConsoleApp
             set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
         }
 
-        public static bool isPlayer;
-        public static bool isOpponent;
+        private bool isPlayer;
+        private bool isOpponent;
 
         /// <summary>
         /// The game loop.
@@ -66,15 +50,12 @@ namespace ConsoleApp
         {
             isPlayer = false;
             isOpponent = false;
-            update = new Update();
-            render = new Render();
             userInput = new UserInput();
-            gameOver = new GameOver();
-            gameWon = new GameWon();
             gameState = new GameState();
             gameState.Start();
+            render = new Render();
             SetColor();
-            //Console.WriteLine("Game initialized.");
+
             if (IsPlayerFirst)
             {
                 isPlayer = true;
@@ -90,33 +71,11 @@ namespace ConsoleApp
         /// </summary>
         private void Update()
         {
-            bool isGame = true;
-            while (isGame)
-            {
-                if (gameState.CheckWin() == Victory.None)
-                {
-                    if (gameState.IsPlayerFirst)
-                    {
-                        PlayerFirst();
-                    }
-                    else
-                    {
-                        OpponentFirst();
-                    }
-                }
-                else if (gameState.CheckWin() == Victory.Opponent)
-                {
-                    // ganhou o oponente
-                    gameOver.GameOverMenu();
-                    isGame = false;
-                }
-                else if (gameState.CheckWin() == Victory.Player)
-                {
-                    // ganhou o jogador
-                    gameWon.GameWonMenu();
-                    isGame = false;
-                }
-            }
+            update = new Update(IsPlayerFirst, IsPlayerWhite, 
+                gameState.CheckWin, RenderGame, CheckUserInput, isPlayer,
+                isOpponent);
+            update.UpdateGame();
+
         }
 
         private void CheckUserInput()
@@ -124,6 +83,11 @@ namespace ConsoleApp
             Thread thread = new Thread(userInput.CheckUserInput);
             thread.Start();
             thread.Join();
+        }
+
+        private void RenderGame(bool isPlayer, bool isOpponent)
+        {
+            render.RenderGame();
         }
 
         private void SetColor()
@@ -167,83 +131,6 @@ namespace ConsoleApp
             }
         }
 
-        private void OpponentFirst()
-        {
-            if (isOpponent)
-            {
-                while (isOpponent)
-                {
-                    OpponentPlay();
-                    SetColor();
-                }
-            }
-            else if (isPlayer)
-            {
-                while (isPlayer)
-                {
-                    PlayerPlay();
-                    SetColor();
-                }
-            }
-        }
-
-        private void PlayerFirst()
-        {
-            if (isPlayer)
-            {
-                while (isPlayer)
-                {
-                    PlayerPlay();
-                    SetColor();
-                }
-            }
-            else if (isOpponent)
-            {
-                while (isOpponent)
-                {
-                    OpponentPlay();
-                    SetColor();
-                }
-            }
-        }
-
-        private void OpponentPlay()
-        {
-            OpponentTurn opponentTurn = new OpponentTurn();
-            CheckUserInput();
-            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
-            update.UpdateGame();
-            render.RenderGame();
-            if (UserInput.Piece != -1 && UserInput.Slot != -1)
-            {
-                if (opponentTurn.IsPlayed)
-                {
-                    isOpponent = false;
-                    isPlayer = true;
-                }
-                UserInput.Piece = -1;
-                UserInput.Slot = -1;
-            }
-        }
-
-        private void PlayerPlay()
-        {
-            PlayerTurn playerTurn = new PlayerTurn();
-            CheckUserInput();
-            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
-            update.UpdateGame();
-            render.RenderGame();
-            if (UserInput.Piece != -1 && UserInput.Slot != -1)
-            {
-                if (playerTurn.IsPlayed)
-                {
-                    isPlayer = false;
-                    isOpponent = true;
-                }
-                UserInput.Piece = -1;
-                UserInput.Slot = -1;
-            }
-        }
 
         public GameLoop(bool isPlayerWhite)
         {

@@ -16,14 +16,11 @@ namespace ConsoleApp
 
         private static char[] slots;
 
-        private GameState gameState;
-
         /// <summary>
         /// Render the game.
         /// </summary>
         public void RenderGame()
         {
-            //Console.WriteLine("Game drawn");
             DrawTable();
         }
 
@@ -405,24 +402,8 @@ namespace ConsoleApp
                 }
             }
 
-            // Instruções:
             Console.SetCursorPosition(0, 21);
-            if (GameLoop.isPlayer)
-            {
-                Console.WriteLine("Turno do jogador");
-            }
-            else if (GameLoop.isOpponent)
-            {
-                Console.WriteLine("Turno do oponente");
-            }
-
-            //Console.SetCursorPosition(0, 21);
-            //Console.WriteLine("Escolha a peça e casa: ");
-            /*Console.SetCursorPosition(0, 22);
-            Console.WriteLine("Peça: " + UserInput.Piece);
-            Console.SetCursorPosition(0, 23);
-            Console.WriteLine("Casa: " + UserInput.Slot);*/
-
+            Console.WriteLine("Escolha a peça e casa: ");
         }
 
         /// <summary>
@@ -436,8 +417,6 @@ namespace ConsoleApp
                 '.',
                 '.', '.', '.', '.', '.', '.'
            };
-
-            gameState = new GameState();
         }
     }
 }

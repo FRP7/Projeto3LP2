@@ -22,23 +22,15 @@ namespace ConsoleApp
 
         public bool IsPlayed { get; set; }
 
-        public void PlayerPlay(int piece, int slot)
+        public void PlayerPlay(int piece, int slot, bool isPlayerWhite)
         {
             if (ChoosePiece(piece, slot))
             {
                 if (CheckIfLegal(piece, slot))
                 {
-                    PlayPiece(piece, slot);
+                    PlayPiece(piece, slot, isPlayerWhite);
                     IsPlayed = true;
                 }
-                else
-                {
-                    // a jogada não é válida
-                }
-            }
-            else
-            {
-                // a peça ou a slot não existem
             }
         }
 
@@ -54,9 +46,9 @@ namespace ConsoleApp
             return gameState.CheckIfLegal(piece, slot);
         }
 
-        private void PlayPiece(int piece, int slot)
+        private void PlayPiece(int piece, int slot, bool isPlayerWhite)
         {
-            if (GameLoop.IsPlayerWhite)
+            if (isPlayerWhite)
             {
                 gameState.PlayerPlay(piece, slot, true);
             }
