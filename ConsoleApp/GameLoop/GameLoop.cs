@@ -13,12 +13,12 @@ namespace ConsoleApp
         /// <summary>
         /// Gets or sets a value indicating whether the game is over.
         /// </summary>
-        public static bool IsGameOver { get; set; }
+        //public static bool IsGameOver { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the game is won.
         /// </summary>
-        public static bool IsGameWon { get; set; }
+        //public static bool IsGameWon { get; set; }
 
         // Access Update class.
         private Update update;
