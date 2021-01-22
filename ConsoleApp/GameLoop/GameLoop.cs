@@ -10,16 +10,6 @@ namespace ConsoleApp
     /// </summary>
     public class GameLoop
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether the game is over.
-        /// </summary>
-        //public static bool IsGameOver { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the game is won.
-        /// </summary>
-        //public static bool IsGameWon { get; set; }
-
         // Access Update class.
         private Update update;
 
@@ -63,9 +53,9 @@ namespace ConsoleApp
             userInput = new UserInput();
             gameState = new GameState();
             gameState.Start();
-            render = new Render(false, false);
+            render = new Render();
             SetColor();
-            //Console.WriteLine("Game initialized.");
+
             if (IsPlayerFirst)
             {
                 isPlayer = true;
@@ -85,7 +75,6 @@ namespace ConsoleApp
                 gameState.CheckWin, RenderGame, CheckUserInput, isPlayer,
                 isOpponent);
             update.UpdateGame();
-            //render.RenderGame();
 
         }
 

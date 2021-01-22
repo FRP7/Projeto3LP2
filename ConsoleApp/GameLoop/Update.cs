@@ -1,7 +1,6 @@
 ﻿using System;
 using Common;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace ConsoleApp
 {
@@ -39,8 +38,6 @@ namespace ConsoleApp
         /// </summary>
         public void UpdateGame()
         {
-            //GameState gameState = new GameState();
-            //Console.WriteLine("Game updated");
             GameResult gameResult = new GameResult();
 
             bool isGame = true;
@@ -113,7 +110,6 @@ namespace ConsoleApp
             {
                 while (IsPlayer)
                 {
-                    //checkUserInput.Invoke();
                     PlayerPlay();
                     SetColor();
                 }
@@ -122,7 +118,6 @@ namespace ConsoleApp
             {
                 while (IsOpponent)
                 {
-                    //checkUserInput.Invoke();
                     OpponentPlay();
                     SetColor();
                 }

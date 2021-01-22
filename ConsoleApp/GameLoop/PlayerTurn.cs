@@ -31,14 +31,6 @@ namespace ConsoleApp
                     PlayPiece(piece, slot);
                     IsPlayed = true;
                 }
-                else
-                {
-                    // a jogada não é válida
-                }
-            }
-            else
-            {
-                // a peça ou a slot não existem
             }
         }
 
