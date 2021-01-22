@@ -128,7 +128,7 @@ namespace ConsoleApp
         {
             OpponentTurn opponentTurn = new OpponentTurn();
             checkUserInput.Invoke();
-            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
+            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot, IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
@@ -146,7 +146,7 @@ namespace ConsoleApp
         {
             PlayerTurn playerTurn = new PlayerTurn();
             checkUserInput.Invoke();
-            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
+            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot, IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {

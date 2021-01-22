@@ -21,7 +21,7 @@ namespace ConsoleApp
 
         private GameState gameState;
 
-        public static bool IsPlayerWhite;
+        public bool IsPlayerWhite;
 
         public bool IsPlayerFirst => gameState.IsPlayerFirst;
 
