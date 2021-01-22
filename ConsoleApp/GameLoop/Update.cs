@@ -11,26 +11,19 @@ namespace ConsoleApp
     public class Update
     {
         private bool isPlayerFirst;
+
         private bool IsPlayerWhite { get; }
 
-        public bool IsPlayer
-        {
-            get => GameLoop.isPlayer;
-            set => GameLoop.isPlayer = value;
-        }
+        public bool IsPlayer { get; private set; }
 
-        public bool IsOpponent
-        {
-            get => GameLoop.isOpponent;
-            set => GameLoop.isOpponent = value;
-        }
+        public bool IsOpponent { get; private set; }
 
         private UserInput userInput;
 
         public delegate Victory CheckWin();
         public CheckWin checkWin;
 
-        public delegate void RenderGame();
+        public delegate void RenderGame(bool isPlayer, bool isOpponent);
         public RenderGame renderGame;
 
         public delegate void CheckUserInput();
@@ -47,37 +40,46 @@ namespace ConsoleApp
         public void UpdateGame()
         {
             //GameState gameState = new GameState();
-            GameOver gameOver = new GameOver();
-            GameWon gameWon = new GameWon();
             //Console.WriteLine("Game updated");
+            GameResult gameResult = new GameResult();
 
             bool isGame = true;
             while (isGame)
             {
                 if (checkWin.Invoke() == Victory.None)
                 {
+                    Console.SetCursorPosition(25, 15);
+                    if (IsPlayer)
+                    {
+                        Console.WriteLine("Turno do jogador");
+                    }
+                    else if (IsOpponent)
+                    {
+                        Console.WriteLine("Turno do oponente");
+                    }
+
                     if (isPlayerFirst)
                     {
                         PlayerFirst();
-                        renderGame.Invoke();
+                        renderGame.Invoke(IsPlayer, IsOpponent);
                     }
                     else
                     {
                         OpponentFirst();
-                        renderGame.Invoke();
+                        renderGame.Invoke(IsPlayer, IsOpponent);
                     }
                 }
                 else if (checkWin.Invoke() == Victory.Opponent)
                 {
                     // ganhou o oponente
-                    gameOver.GameOverMenu();
                     isGame = false;
+                    gameResult.ShowGameResult(false);
                 }
                 else if (checkWin.Invoke() == Victory.Player)
                 {
                     // ganhou o jogador
-                    gameWon.GameWonMenu();
                     isGame = false;
+                    gameResult.ShowGameResult(true);
                 }
             }
         }
@@ -132,7 +134,7 @@ namespace ConsoleApp
             OpponentTurn opponentTurn = new OpponentTurn();
             checkUserInput.Invoke();
             opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot);
-            renderGame.Invoke();
+            renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
                 if (opponentTurn.IsPlayed)
@@ -150,7 +152,7 @@ namespace ConsoleApp
             PlayerTurn playerTurn = new PlayerTurn();
             checkUserInput.Invoke();
             playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot);
-            renderGame.Invoke();
+            renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
                 if (playerTurn.IsPlayed)
@@ -209,7 +211,7 @@ namespace ConsoleApp
         /// </summary>
         public Update(bool isPlayerFirst, bool isPlayerWhite, 
             CheckWin checkWin, RenderGame renderGame, 
-            CheckUserInput checkUserInput)
+            CheckUserInput checkUserInput, bool isPlayer, bool isOpponent)
         {
             this.isPlayerFirst = isPlayerFirst;
             IsPlayerWhite = isPlayerWhite;
@@ -217,6 +219,8 @@ namespace ConsoleApp
             this.checkWin += checkWin;
             this.renderGame += renderGame;
             this.checkUserInput += checkUserInput;
+            this.IsPlayer = isPlayer;
+            this.IsOpponent = isOpponent;
         }
     }
 }

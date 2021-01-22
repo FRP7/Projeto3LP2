@@ -18,6 +18,10 @@ namespace ConsoleApp
 
         private GameState gameState;
 
+        private readonly bool isPlayer;
+
+        private readonly bool isOpponent;
+
         /// <summary>
         /// Render the game.
         /// </summary>
@@ -405,30 +409,28 @@ namespace ConsoleApp
                 }
             }
 
-            // Instruções:
             Console.SetCursorPosition(0, 21);
-            if (GameLoop.isPlayer)
-            {
-                Console.WriteLine("Turno do jogador");
-            }
-            else if (GameLoop.isOpponent)
-            {
-                Console.WriteLine("Turno do oponente");
-            }
-
-            //Console.SetCursorPosition(0, 21);
-            //Console.WriteLine("Escolha a peça e casa: ");
+            Console.WriteLine("Escolha a peça e casa: ");
             /*Console.SetCursorPosition(0, 22);
             Console.WriteLine("Peça: " + UserInput.Piece);
             Console.SetCursorPosition(0, 23);
             Console.WriteLine("Casa: " + UserInput.Slot);*/
+            /*Console.SetCursorPosition(0, 21);
+            if (isPlayer && !isOpponent)
+            {
+                Console.WriteLine("Turno do jogador");
+            }
+            else if (isOpponent && !isPlayer)
+            {
+                Console.WriteLine("Turno do oponente");
+            }*/
 
         }
 
         /// <summary>
         /// Initialize variables.
         /// </summary>
-        public Render()
+        public Render(bool isPlayer, bool isOpponent)
         {
             slots = new char[]
            {
@@ -438,6 +440,9 @@ namespace ConsoleApp
            };
 
             gameState = new GameState();
+
+            this.isPlayer = isPlayer;
+            this.isOpponent = isOpponent;
         }
     }
 }

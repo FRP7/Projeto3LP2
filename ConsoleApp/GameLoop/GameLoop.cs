@@ -29,12 +29,6 @@ namespace ConsoleApp
         // Access UserInput class.
         private UserInput userInput;
 
-        // Access GameOver class.
-        private GameOver gameOver;
-
-        // Access GameWon class.
-        private GameWon gameWon;
-
         private GameState gameState;
 
         public static bool IsPlayerWhite;
@@ -47,8 +41,8 @@ namespace ConsoleApp
             set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
         }
 
-        public static bool isPlayer;
-        public static bool isOpponent;
+        private bool isPlayer;
+        private bool isOpponent;
 
         /// <summary>
         /// The game loop.
@@ -66,12 +60,10 @@ namespace ConsoleApp
         {
             isPlayer = false;
             isOpponent = false;
-            render = new Render();
             userInput = new UserInput();
-            gameOver = new GameOver();
-            gameWon = new GameWon();
             gameState = new GameState();
             gameState.Start();
+            render = new Render(false, false);
             SetColor();
             //Console.WriteLine("Game initialized.");
             if (IsPlayerFirst)
@@ -90,7 +82,8 @@ namespace ConsoleApp
         private void Update()
         {
             update = new Update(IsPlayerFirst, IsPlayerWhite, 
-                gameState.CheckWin, RenderGame, CheckUserInput);
+                gameState.CheckWin, RenderGame, CheckUserInput, isPlayer,
+                isOpponent);
             update.UpdateGame();
             //render.RenderGame();
 
@@ -103,7 +96,7 @@ namespace ConsoleApp
             thread.Join();
         }
 
-        private void RenderGame()
+        private void RenderGame(bool isPlayer, bool isOpponent)
         {
             render.RenderGame();
         }
