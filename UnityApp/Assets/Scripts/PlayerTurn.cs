@@ -22,12 +22,19 @@ public class PlayerTurn
 
     public void PlayerPlay(int piece, int slot, bool isPlayerWhite)
     {
-        if (ChoosePiece(piece, slot))
+        if (!IsPlayed)
         {
-            if (CheckIfLegal(piece, slot))
+            if (ChoosePiece(piece, slot))
             {
-                PlayPiece(piece, slot, isPlayerWhite);
-                IsPlayed = true;
+                if (CheckIfLegal(piece, slot))
+                {
+                    PlayPiece(piece, slot, isPlayerWhite);
+                    IsPlayed = true;
+                }
+                else
+                {
+                    IsPlayed = false;
+                }
             }
         }
     }

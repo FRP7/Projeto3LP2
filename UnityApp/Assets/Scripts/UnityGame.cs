@@ -200,11 +200,13 @@ public class UnityGame : MonoBehaviour
             playerTurn.PlayerPlay(peca, slot, isPlayerWhite);
             peca = -1;
             slot = -1;
-            isPlayed = false;
-            //playerTurn.IsPlayed = true;
-            isPlayer = false;
-            isOpponent = true;
-            SetColor();
+            if (playerTurn.IsPlayed)
+            {
+                isPlayed = false;
+                isPlayer = false;
+                isOpponent = true;
+                SetColor();
+            }
         }
     }
 
@@ -218,11 +220,13 @@ public class UnityGame : MonoBehaviour
             opponentTurn.OpponentPlay(peca, slot, isPlayerWhite);
             peca = -1;
             slot = -1;
-            isPlayed = false;
-            //opponentTurn.IsPlayed = true;
-            SetColor();
-            isOpponent = false;
-            isPlayer = true;
+            if (opponentTurn.IsPlayed)
+            {
+                isPlayed = false;
+                isPlayer = true;
+                isOpponent = false;
+                SetColor();
+            }
         }
     }
 }
