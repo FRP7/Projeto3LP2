@@ -27,8 +27,8 @@ namespace ConsoleApp
 
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
         {
-            get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-            set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+            get => ServiceLocator.GetService<GameData>().AllSlots;
+            set => ServiceLocator.GetService<GameData>().AllSlots = value;
         }
 
         private bool isPlayer;
@@ -74,7 +74,7 @@ namespace ConsoleApp
             update = new Update(IsPlayerFirst, IsPlayerWhite, 
                 gameState.CheckWin, RenderGame, CheckUserInput, isPlayer,
                 isOpponent);
-            update.UpdateGame();
+            update.UpdateGame(GetAllSlots);
 
         }
 

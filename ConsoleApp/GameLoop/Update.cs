@@ -28,17 +28,20 @@ namespace ConsoleApp
         public delegate void CheckUserInput();
         public CheckUserInput checkUserInput;
 
-        public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
-        {
-            get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-            set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-        }
+
+        public List<Tuple<SlotTypes, SlotColors>> GetAllSlots { get; set; }
+        /*{
+            get => ServiceLocator.GetService<GameState>().AllSlots;
+            set => ServiceLocator.GetService<GameState>().AllSlots = value;
+        }*/
         /// <summary>
         /// Update the logic of the game.
         /// </summary>
-        public void UpdateGame()
+        public void UpdateGame(List<Tuple<SlotTypes, SlotColors>> slots)
         {
             GameResult gameResult = new GameResult();
+
+            GetAllSlots = slots;
 
             bool isGame = true;
             while (isGame)

@@ -50,16 +50,16 @@ public class UnityGame : MonoBehaviour
     // Todas as peças.
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
-        get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-        set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+        get => ServiceLocator.GetService<GameData>().AllSlots;
+        set => ServiceLocator.GetService<GameData>().AllSlots = value;
     }
 
-    public bool IsPlayerWhite { get => isPlayerWhite; }
+    public bool IsPlayerWhite { get => colorSpec.IsPlayerWhite; }
 
     public bool IsPlayerFirst => gameState.IsPlayerFirst;
 
     // False = black  TRUE = white
-    [SerializeField] private bool isPlayerWhite;
+    [SerializeField] private ColorSO colorSpec;
 
 
     private void Awake()
@@ -111,11 +111,11 @@ public class UnityGame : MonoBehaviour
 
     private void PickColor()
     {
-        if (isPlayerWhite)
+        if (IsPlayerWhite)
         {
             gameState.PlayerType = SlotColors.White;
         }
-        else if (!isPlayerWhite)
+        else if (!IsPlayerWhite)
         {
             gameState.PlayerType = SlotColors.Black;
         }
@@ -197,7 +197,7 @@ public class UnityGame : MonoBehaviour
 
         if (isPlayed == true)
         {
-            playerTurn.PlayerPlay(peca, slot, isPlayerWhite);
+            playerTurn.PlayerPlay(peca, slot, IsPlayerWhite);
             peca = -1;
             slot = -1;
             if (playerTurn.IsPlayed)
@@ -217,7 +217,7 @@ public class UnityGame : MonoBehaviour
 
         if (isPlayed == true)
         {
-            opponentTurn.OpponentPlay(peca, slot, isPlayerWhite);
+            opponentTurn.OpponentPlay(peca, slot, IsPlayerWhite);
             peca = -1;
             slot = -1;
             if (opponentTurn.IsPlayed)

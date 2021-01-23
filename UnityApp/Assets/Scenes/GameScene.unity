@@ -3006,7 +3006,7 @@ MonoBehaviour:
   isPlayed: 0
   isPlayer: 0
   isOpponent: 0
-  isPlayerWhite: 0
+  colorSpec: {fileID: 11400000, guid: 05c1a46b369f11649b222b7e3366ea95, type: 2}
 --- !u!4 &1129196735
 Transform:
   m_ObjectHideFlags: 0

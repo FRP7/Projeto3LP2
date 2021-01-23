@@ -6,16 +6,18 @@ public class OpponentTurn
 {
     private GameState gameState = new GameState();
 
-    public List<Tuple<int, SlotTypes, SlotColors>> GetPlayerLegalPlays
+    public List<Tuple<int, SlotTypes, SlotColors, bool>> GetPlayerLegalPlays
     {
-        get => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
-        set => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
+        //get => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
+        get => ServiceLocator.GetService<GameData>().PlayerLegalPlays;
+        //set => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
+        set => ServiceLocator.GetService<GameData>().PlayerLegalPlays = value;
     }
 
     public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
     {
-        get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-        set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+        get => ServiceLocator.GetService<GameData>().AllSlots;
+        set => ServiceLocator.GetService<GameData>().AllSlots = value;
     }
 
     public bool IsPlayed { get; set; }

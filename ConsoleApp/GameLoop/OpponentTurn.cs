@@ -8,16 +8,16 @@ namespace ConsoleApp
     {
         private GameState gameState = new GameState();
 
-        public List<Tuple<int, SlotTypes, SlotColors>> GetPlayerLegalPlays
+        public List<Tuple<int, SlotTypes, SlotColors, bool>> GetPlayerLegalPlays
         {
-            get => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
-            set => ServiceLocator.GetService<List<Tuple<int, SlotTypes, SlotColors>>>();
+            get => ServiceLocator.GetService<GameState>().PlayerLegalPlays;
+            set => ServiceLocator.GetService<GameState>().PlayerLegalPlays = value;
         }
 
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
         {
-            get => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
-            set => ServiceLocator.GetService<List<Tuple<SlotTypes, SlotColors>>>();
+            get => ServiceLocator.GetService<GameState>().AllSlots;
+            set => ServiceLocator.GetService<GameState>().AllSlots = value;
         }
 
         public bool IsPlayed { get; set; }
