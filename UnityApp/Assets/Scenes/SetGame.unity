@@ -259,7 +259,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Preto
+  m_Text: Black
 --- !u!222 &796373967
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -470,9 +470,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Branco
-
-'
+  m_Text: White
 --- !u!222 &992947917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -791,8 +789,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 141}
-  m_SizeDelta: {x: 342.0962, y: 38.385986}
+  m_AnchoredPosition: {x: -8, y: 147}
+  m_SizeDelta: {x: 458.52148, y: 37.106537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1720087683
 MonoBehaviour:
@@ -827,7 +825,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Com que cor quer jogar?
+  m_Text: Which color do you want to play?
 --- !u!222 &1720087684
 CanvasRenderer:
   m_ObjectHideFlags: 0

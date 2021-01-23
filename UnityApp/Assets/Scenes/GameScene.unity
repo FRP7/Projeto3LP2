@@ -1803,8 +1803,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316.28, y: 153.3}
-  m_SizeDelta: {x: 66.93262, y: 19.403717}
+  m_AnchoredPosition: {x: 308.46017, y: 153.3}
+  m_SizeDelta: {x: 51.29303, y: 19.403717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &764626716
 MonoBehaviour:
@@ -1839,7 +1839,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Turno do:'
+  m_Text: Turn of
 --- !u!222 &764626717
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pe\xE7a:"
+  m_Text: 'Piece:'
 --- !u!222 &862054425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2325,7 +2325,7 @@ GameObject:
   - component: {fileID: 918291686}
   - component: {fileID: 918291685}
   m_Layer: 5
-  m_Name: Oponente
+  m_Name: Opponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2347,7 +2347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69.9, y: 0.000015258789}
+  m_AnchoredPosition: {x: 61.5, y: 0.000015258789}
   m_SizeDelta: {x: 66.93262, y: 19.403717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918291685
@@ -2383,7 +2383,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Oponente
+  m_Text: Opponent
 --- !u!222 &918291686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3001,7 +3001,7 @@ MonoBehaviour:
   - {fileID: 1378742187}
   - {fileID: 259402970}
   - {fileID: 29931678}
-  peca: -1
+  piece: 0
   slot: -1
   isPlayed: 0
   isPlayer: 0
@@ -3033,7 +3033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ec06ca62d103e44adb80db8c49e4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peca: {fileID: 139173486}
+  piece: {fileID: 139173486}
   slot: {fileID: 777983282}
   playButton: {fileID: 322184422}
   gameManager: {fileID: 1129196733}
@@ -3212,7 +3212,7 @@ GameObject:
   - component: {fileID: 1261999541}
   - component: {fileID: 1261999540}
   m_Layer: 5
-  m_Name: Jogador
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3234,8 +3234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 67.1, y: 0.000015258789}
-  m_SizeDelta: {x: 66.93262, y: 19.403717}
+  m_AnchoredPosition: {x: 54.3, y: 0.000015258789}
+  m_SizeDelta: {x: 52.410156, y: 19.403717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261999540
 MonoBehaviour:
@@ -3270,7 +3270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jogador
+  m_Text: Player
 --- !u!222 &1261999541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3839,7 +3839,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jogar
+  m_Text: 'Play
+
+'
 --- !u!222 &1805334140
 CanvasRenderer:
   m_ObjectHideFlags: 0

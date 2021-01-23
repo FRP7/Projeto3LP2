@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Common;
 
 namespace ConsoleApp
 {
@@ -10,7 +8,7 @@ namespace ConsoleApp
     public class UserInput
     {
         /// <summary>
-        /// Gets input from the player.
+        /// Gets and sets the piece chosen by the player.
         /// </summary>
         public static int Piece
         {
@@ -18,13 +16,19 @@ namespace ConsoleApp
             set => piece = value;
         }
 
+        /// <summary>
+        /// Gets and sets the slot chosen by the player.
+        /// </summary>
         public static int Slot
         {
             get => slot;
             set => slot = value;
         }
 
+        // The piece chosen by the player.
         private static int piece;
+
+        // The slot chosen by the player.
         private static int slot;
 
         /// <summary>
@@ -32,12 +36,19 @@ namespace ConsoleApp
         /// </summary>
         public void CheckUserInput()
         {
+            // The user input.
             string userInput;
+
+            // If the the first input is valid.
             bool isInput1 = false;
+
+            // If the second input is valid. 
             bool isInput2 = false;
 
+            // Check the player's input.
             if (Console.KeyAvailable)
             {
+                // Check the first input.
                 while (!isInput1)
                 {
                     userInput = Console.ReadLine();
@@ -50,11 +61,12 @@ namespace ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine("Número errado.");
+                            Console.WriteLine("Wrong number.");
                         }
                     }
                 }
 
+                // Check the second input.
                 while (!isInput2)
                 {
                     userInput = Console.ReadLine();
@@ -67,13 +79,16 @@ namespace ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine("Número errado.");
+                            Console.WriteLine("Wrong number.");
                         }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Initialize variables.
+        /// </summary>
         public UserInput()
         {
             piece = -1;

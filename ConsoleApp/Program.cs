@@ -8,6 +8,9 @@ namespace ConsoleApp
     /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Call the main menu.
+        /// </summary>
         private static void Main()
         {
             Menu menu = new Menu();

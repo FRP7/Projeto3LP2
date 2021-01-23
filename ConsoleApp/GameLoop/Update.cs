@@ -9,34 +9,60 @@ namespace ConsoleApp
     /// </summary>
     public class Update
     {
+        // Check whether the player is the first to play.
         private bool isPlayerFirst;
 
+        // Gets and checks whether the player is the first to play.
         private bool IsPlayerWhite { get; }
 
+        // Gets and checks whether is the player's turn. 
         public bool IsPlayer { get; private set; }
 
+        // Gets and cheks whether is the opponent's turn.
         public bool IsOpponent { get; private set; }
 
+        // UserInput class.
         private UserInput userInput;
 
+        /// <summary>
+        /// Delegate of the win checker method.
+        /// </summary>
+        /// <returns></returns>
         public delegate Victory CheckWin();
+
+        // Access the delegate CheckWin.
         public CheckWin checkWin;
 
+        /// <summary>
+        /// Delegate of the render game method.
+        /// </summary>
+        /// <param name="isPlayer"> Check whether is the player's turn.</param>
+        /// <param name="isOpponent"> Check wthether is the opponent's turn.
+        /// </param>
         public delegate void RenderGame(bool isPlayer, bool isOpponent);
+
+        // Access the delegate RenderGame.
         public RenderGame renderGame;
 
+        /// <summary>
+        /// Delegate of the check user input.
+        /// </summary>
         public delegate void CheckUserInput();
+
+        // Access the delegate CheckUserInput.
         public CheckUserInput checkUserInput;
 
-
+        /// <summary>
+        /// Gets and sets all the slots in the game (whether are occupied by
+        /// the player or not).
+        /// </summary>
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots { get; set; }
-        /*{
-            get => ServiceLocator.GetService<GameState>().AllSlots;
-            set => ServiceLocator.GetService<GameState>().AllSlots = value;
-        }*/
+
         /// <summary>
         /// Update the logic of the game.
         /// </summary>
+        /// <param name="slots"> All slots in the game (whether are occupied by
+        /// the player or not).</param>
         public void UpdateGame(List<Tuple<SlotTypes, SlotColors>> slots)
         {
             GameResult gameResult = new GameResult();
@@ -84,6 +110,9 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// GameLoop if the opponent is the first to play in the game.
+        /// </summary>
         private void OpponentFirst()
         {
             if (IsOpponent)
@@ -107,6 +136,9 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// GameLoop if the player is the first to play in the game.
+        /// </summary>
         private void PlayerFirst()
         {
             if (IsPlayer)
@@ -127,11 +159,15 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Method of the opponent's play.
+        /// </summary>
         private void OpponentPlay()
         {
             OpponentTurn opponentTurn = new OpponentTurn();
             checkUserInput.Invoke();
-            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot, IsPlayerWhite);
+            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot,
+                IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
@@ -145,11 +181,15 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Method of the player's play.
+        /// </summary>
         private void PlayerPlay()
         {
             PlayerTurn playerTurn = new PlayerTurn();
             checkUserInput.Invoke();
-            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot, IsPlayerWhite);
+            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot,
+                IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
             {
@@ -163,6 +203,9 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Update the colors in the board.
+        /// </summary>
         private void SetColor()
         {
             if (!IsPlayerWhite)
@@ -205,8 +248,21 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Initialize variables.
+        /// Initialize the variables.
         /// </summary>
+        /// <param name="isPlayerFirst"> Checks whether the player is the first 
+        /// to play.</param>
+        /// <param name="isPlayerWhite"> Checks whether the player is white.
+        /// </param>
+        /// <param name="checkWin"> The method to check if there's a win.
+        /// </param>
+        /// <param name="renderGame"> The method to render the game.</param>
+        /// <param name="checkUserInput"> The method to check and read the
+        /// user's input.</param>
+        /// <param name="isPlayer"> Checks whether it's the player's turn.
+        /// </param>
+        /// <param name="isOpponent"> Checks whether it's the opponent's turn.
+        /// </param>
         public Update(bool isPlayerFirst, bool isPlayerWhite, 
             CheckWin checkWin, RenderGame renderGame, 
             CheckUserInput checkUserInput, bool isPlayer, bool isOpponent)

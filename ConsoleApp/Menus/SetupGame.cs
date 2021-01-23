@@ -1,12 +1,18 @@
 ﻿using System;
-using Common;
 
 namespace ConsoleApp
 {
+    /// <summary>
+    /// Class where the player chooses his color.
+    /// </summary>
     public class SetupGame
     {
+        // Checks whether the player is white.
         private bool isPlayerWhite;
 
+        /// <summary>
+        /// Set the game.
+        /// </summary>
         public void SetGame()
         {
             isPlayerWhite = PickColor();
@@ -15,6 +21,10 @@ namespace ConsoleApp
             gameLoop.Game();
         }
 
+        /// <summary>
+        /// Choose a color.
+        /// </summary>
+        /// <returns> Checks whether the white color was chosen. </returns>
         private bool PickColor()
         {
             string userInput = "";
@@ -22,8 +32,8 @@ namespace ConsoleApp
 
             while(!isDone)
             {
-                Console.WriteLine("Escolha uma cor: ");
-                Console.WriteLine("W = branco,  B = preto.");
+                Console.WriteLine("Choose a color: ");
+                Console.WriteLine("W = white,  B = black.");
                 userInput = Console.ReadLine().ToUpper();
                 if (userInput == "W" | userInput == "B")
                 {

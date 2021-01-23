@@ -19,19 +19,33 @@ namespace ConsoleApp
         // Access UserInput class.
         private UserInput userInput;
 
+        // Access the GameState class (in the Common).
         private GameState gameState;
 
-        public bool IsPlayerWhite;
+        /// <summary>
+        /// Gets or sets whether the player is white.
+        /// </summary>
+        public bool IsPlayerWhite { get; set; }
 
+        /// <summary>
+        /// Gets whether the player is the first to play.
+        /// </summary>
         public bool IsPlayerFirst => gameState.IsPlayerFirst;
 
+        /// <summary>
+        /// Gets or sets all slots in the game (whether are occupied by the
+        /// player or not).
+        /// </summary>
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
         {
             get => ServiceLocator.GetService<GameData>().AllSlots;
             set => ServiceLocator.GetService<GameData>().AllSlots = value;
         }
 
+        // Checks whether is the player's turn.
         private bool isPlayer;
+
+        // Checks whether is the opponent turn.
         private bool isOpponent;
 
         /// <summary>
@@ -78,6 +92,9 @@ namespace ConsoleApp
 
         }
 
+        /// <summary>
+        /// Check the user input.
+        /// </summary>
         private void CheckUserInput()
         {
             Thread thread = new Thread(userInput.CheckUserInput);
@@ -85,11 +102,21 @@ namespace ConsoleApp
             thread.Join();
         }
 
+        /// <summary>
+        /// Render the game.
+        /// </summary>
+        /// <param name="isPlayer"> Checks whether is the player's turn.
+        /// </param>
+        /// <param name="isOpponent"> Checks whether is the opponent's turn.
+        /// </param>
         private void RenderGame(bool isPlayer, bool isOpponent)
         {
             render.RenderGame();
         }
 
+        /// <summary>
+        /// Set the colors in the game.
+        /// </summary>
         private void SetColor()
         {
             if (!IsPlayerWhite)
@@ -131,7 +158,11 @@ namespace ConsoleApp
             }
         }
 
-
+        /// <summary>
+        /// Initialize the property.
+        /// </summary>
+        /// <param name="isPlayerWhite"> Checks whether the player is white.
+        /// </param>
         public GameLoop(bool isPlayerWhite)
         {
             IsPlayerWhite = isPlayerWhite;

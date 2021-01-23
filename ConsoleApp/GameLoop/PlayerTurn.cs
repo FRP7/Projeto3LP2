@@ -4,27 +4,50 @@ using Common;
 
 namespace ConsoleApp
 {
+    /// <summary>
+    /// Class that takes care of the player's turn.
+    /// </summary>
     public class PlayerTurn
     {
-        private GameState gameState = new GameState();
+        // The GameState class from Common.
+        private GameState gameState; 
 
-        public List<Tuple<int, SlotTypes, SlotColors, bool>> GetPlayerLegalPlays
+        /// <summary>
+        /// Gets and sets the list of legal plays at the moment.
+        /// </summary>
+        public List<Tuple<int, SlotTypes, SlotColors,
+            bool>> GetPlayerLegalPlays
         {
             get => ServiceLocator.GetService<GameState>().PlayerLegalPlays;
-            set => ServiceLocator.GetService<GameState>().PlayerLegalPlays = value;
+            set => ServiceLocator.GetService<GameState>().PlayerLegalPlays =
+                value;
         }
 
+        /// <summary>
+        /// Gets and sets the list of all slots from the board (with or without
+        /// pieces).
+        /// </summary>
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
         {
             get => ServiceLocator.GetService<GameState>().AllSlots;
             set => ServiceLocator.GetService<GameState>().AllSlots = value;
         }
 
+        /// <summary>
+        /// Gets and sets whether the turn is over.
+        /// </summary>
         public bool IsPlayed { get; set; }
 
+        /// <summary>
+        /// Play the turn.
+        /// </summary>
+        /// <param name="piece"> Chosen piece.</param>
+        /// <param name="slot"> Chosen slot.</param>
+        /// <param name="isPlayerWhite"> Check whether the player is white.
+        /// </param>
         public void PlayerPlay(int piece, int slot, bool isPlayerWhite)
         {
-            if (ChoosePiece(piece, slot))
+            if (ChoosePiece(piece))
             {
                 if (CheckIfLegal(piece, slot))
                 {
@@ -34,18 +57,36 @@ namespace ConsoleApp
             }
         }
 
-        private bool ChoosePiece(int piece, int slot)
+        /// <summary>
+        /// Choose a piece and list all possible legal plays.
+        /// </summary>
+        /// <param name="piece"> Chosen piece.</param>
+        /// <returns> Returns true if the piece is legal.</returns>
+        private bool ChoosePiece(int piece)
         {
             gameState.CheckPlayerLegalPlays(piece);
 
             return true;
         }
 
+        /// <summary>
+        /// Check if the chosen play is legal.
+        /// </summary>
+        /// <param name="piece"> Chosen piece.</param>
+        /// <param name="slot"> Chosen slot.</param>
+        /// <returns> Returns true if the chosen play is legal. </returns>
         private bool CheckIfLegal(int piece, int slot)
         {
             return gameState.CheckIfLegal(piece, slot);
         }
 
+        /// <summary>
+        /// Play the piece.
+        /// </summary>
+        /// <param name="piece"> Chosen piece. </param>
+        /// <param name="slot"> Chosen slot. </param>
+        /// <param name="isPlayerWhite"> Checks whether the player is white.
+        /// </param>
         private void PlayPiece(int piece, int slot, bool isPlayerWhite)
         {
             if (isPlayerWhite)
@@ -58,9 +99,13 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Initialize the variables and properties.
+        /// </summary>
         public PlayerTurn()
         {
             IsPlayed = false;
+            gameState = new GameState();
         }
     }
 }

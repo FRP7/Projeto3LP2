@@ -1,5 +1,4 @@
 ﻿using System;
-using Common;
 
 namespace ConsoleApp
 {
@@ -8,12 +7,16 @@ namespace ConsoleApp
     /// </summary>
     public class Render
     {
+        /// <summary>
+        /// Gets and sets the board slot characters.
+        /// </summary>
         public static char[] Slots
         {
             get => slots;
             set => slots = value;
         }
 
+        // The board slot characters.
         private static char[] slots;
 
         /// <summary>
@@ -24,15 +27,15 @@ namespace ConsoleApp
             DrawTable();
         }
 
+        /// <summary>
+        /// Draw the table.
+        /// </summary>
         private void DrawTable()
         {
-            // legendas
+            // Draw the piece's numbers.
             Console.SetCursorPosition(2, 0);
-            // 10
             Console.WriteLine("10");
-            // 11
             Console.SetCursorPosition(11, 0);
-            // 12
             Console.WriteLine("11");
             Console.SetCursorPosition(20, 0);
             Console.WriteLine("12");
@@ -57,8 +60,7 @@ namespace ConsoleApp
             Console.SetCursorPosition(20, 20);
             Console.WriteLine("2");
 
-            // primeira metade
-
+            // Draw the first half of the board.
             for (int i = 1; i < 21; i++)
             {
                 Console.SetCursorPosition(i, 1);
@@ -224,8 +226,7 @@ namespace ConsoleApp
                 }
             }
 
-            // meio
-
+            // Draw the middle of the board.
             for (int i = 1; i < 21; i++)
             {
                 Console.SetCursorPosition(i, 10);
@@ -235,8 +236,7 @@ namespace ConsoleApp
                 }
             }
 
-            // segunda metade
-
+            // Draw the second half of the board.
             for (int i = 1; i < 21; i++)
             {
                 Console.SetCursorPosition(i, 11);
@@ -402,12 +402,13 @@ namespace ConsoleApp
                 }
             }
 
+            // Draw the instructions.
             Console.SetCursorPosition(0, 21);
-            Console.WriteLine("Escolha a peça e casa: ");
+            Console.WriteLine("Choose a piece and a slot to move. ");
         }
 
         /// <summary>
-        /// Initialize variables.
+        /// Initialize the variable.
         /// </summary>
         public Render()
         {
