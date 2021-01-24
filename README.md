@@ -42,31 +42,22 @@ No código da Consola e do *Unity*, detetam o input do jogador, chamam os respeti
 Durante o projeto, evitámos sempre que possível o uso de *static* por isso, nas situações em que sentimos  necessidade para tal, utilizámos o código do *Service Locator pattern* disponibilizado pelo professor para assim evitar o uso do mesmo.
 Na renderização do jogo na consola, para melhorarmos a performance e reduzirmos o *tearing*, utilizámos o código do *DoubleBuffer* que foi feito num exercício em contexto de aulas.
 
-
-
-
 **UML do código comum**
 
 ![image](P3_Common_UML.JPG)
-
 
 **UML da Consola**
 
 ![image](P3_Console_UML.JPG)
 
-
 **UML do Unity**
 
-![image](P3_Unity_UML)
-
-
-
+![image](P3_Unity_UML.JPG)
 
 ## Referências
 
 Para criar os parâmetros que aceitam métodos, baseei-me nesta solução no *StackOverflow*:
 https://stackoverflow.com/questions/1996426/pass-multiple-optional-parameters-to-a-c-sharp-function
-
 ```
 public static int AddUp(params int[] values)
 {
@@ -78,7 +69,6 @@ public static int AddUp(params int[] values)
     return sum;
 }
 ```
-
 Para criar o *DoubleBuffer*, utilizei este exercício feito numa das aulas:
 https://github.com/VideojogosLusofona/lp2_2020_aulas/tree/main/Aula11/Exercicio1
 
