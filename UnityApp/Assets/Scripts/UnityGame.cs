@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Common;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class where the game is controlled. 
@@ -151,11 +152,15 @@ public class UnityGame : MonoBehaviour
         {
             // ganhou o oponente
             resultSO.HasPlayerWon = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().
+                buildIndex + 1);
         }
         else if (gameState.CheckWin() == Victory.Player)
         {
             // ganhou o jogador
             resultSO.HasPlayerWon = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().
+                buildIndex + 1);
         }
     }
 
