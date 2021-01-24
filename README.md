@@ -44,9 +44,6 @@ Na renderização do jogo na consola, para melhorarmos a performance e reduzirmos 
 
 
 
-**UMLs**
-
-
 
 **UML do código comum**
 
