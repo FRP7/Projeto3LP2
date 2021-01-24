@@ -18,9 +18,9 @@ namespace ConsoleApp
 
             Console.Clear();
             if (hasPlayerWon)
-                Console.WriteLine("\n\tGanhou o jogador");
+                Console.WriteLine("\n\tThe player won!");
             else if (!hasPlayerWon)
-                Console.WriteLine("\n\tGanhou o oponente");
+                Console.WriteLine("\n\tThe opponent won!");
 
             Console.WriteLine("\n\n\n\t(M)ENU");
             Console.WriteLine("\n\t(R)ETRY");
