@@ -49,19 +49,16 @@ namespace ConsoleApp
             if (Console.KeyAvailable)
             {
                 // Check the first input.
+                Console.SetCursorPosition(0, 22);
                 while (!isInput1)
                 {
                     userInput = Console.ReadLine();
 
                     if(Int32.TryParse(userInput, out piece))
                     {
-                        if(piece <= 12)
+                        if (piece <= 12)
                         {
                             isInput1 = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong number.");
                         }
                     }
                 }
@@ -76,10 +73,6 @@ namespace ConsoleApp
                         if (piece <= 12)
                         {
                             isInput2 = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong number.");
                         }
                     }
                 }

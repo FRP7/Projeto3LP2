@@ -77,11 +77,11 @@ namespace ConsoleApp
                     Console.SetCursorPosition(25, 15);
                     if (IsPlayer)
                     {
-                        Console.WriteLine("Turno do jogador");
+                        Console.WriteLine("Player's turn.");
                     }
                     else if (IsOpponent)
                     {
-                        Console.WriteLine("Turno do oponente");
+                        Console.WriteLine("Opponent turn.");
                     }
 
                     if (isPlayerFirst)
