@@ -11,25 +11,6 @@ public class OpponentTurn
     private GameState gameState; 
 
     /// <summary>
-    /// Gets and sets the list of all possible legal plays at the moment.
-    /// </summary>
-    public List<Tuple<int, SlotTypes, SlotColors, bool>> GetPlayerLegalPlays
-    {
-        get => ServiceLocator.GetService<GameData>().PlayerLegalPlays;
-        set => ServiceLocator.GetService<GameData>().PlayerLegalPlays = value;
-    }
-
-    /// <summary>
-    /// Gets and sets the list of all the slots in the game (whether are 
-    /// occupied or not by the player).
-    /// </summary>
-    public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
-    {
-        get => ServiceLocator.GetService<GameData>().AllSlots;
-        set => ServiceLocator.GetService<GameData>().AllSlots = value;
-    }
-
-    /// <summary>
     /// Gets or sets whether the turn is played.
     /// </summary>
     public bool IsPlayed { get; set; }

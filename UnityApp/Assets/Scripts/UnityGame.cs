@@ -30,6 +30,8 @@ public class UnityGame : MonoBehaviour
     // Checks whether is the opponent's turn.
     [SerializeField] private bool isOpponent;
 
+    [SerializeField] private ResultSO resultSO;
+
     /// <summary>
     /// Gets and sets whether is the player's turn.
     /// </summary>
@@ -148,10 +150,12 @@ public class UnityGame : MonoBehaviour
         else if (gameState.CheckWin() == Victory.Opponent)
         {
             // ganhou o oponente
+            resultSO.HasPlayerWon = false;
         }
         else if (gameState.CheckWin() == Victory.Player)
         {
             // ganhou o jogador
+            resultSO.HasPlayerWon = true;
         }
     }
 

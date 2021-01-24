@@ -3006,6 +3006,7 @@ MonoBehaviour:
   isPlayed: 0
   isPlayer: 0
   isOpponent: 0
+  resultSO: {fileID: 11400000, guid: bbd69157bb6d70348a7c0126f6b92b3e, type: 2}
   colorSpec: {fileID: 11400000, guid: 05c1a46b369f11649b222b7e3366ea95, type: 2}
 --- !u!4 &1129196735
 Transform:

@@ -13,27 +13,6 @@ namespace ConsoleApp
         private GameState gameState;
 
         /// <summary>
-        /// Gets and sets the list of legal plays at the moment.
-        /// </summary>
-        public List<Tuple<int, SlotTypes, SlotColors, 
-            bool>> GetPlayerLegalPlays
-        {
-            get => ServiceLocator.GetService<GameState>().PlayerLegalPlays;
-            set => ServiceLocator.GetService<GameState>().PlayerLegalPlays = 
-                value;
-        }
-
-        /// <summary>
-        /// Gets and sets the list of all slots from the board (with or without
-        /// pieces).
-        /// </summary>
-        public List<Tuple<SlotTypes, SlotColors>> GetAllSlots
-        {
-            get => ServiceLocator.GetService<GameState>().AllSlots;
-            set => ServiceLocator.GetService<GameState>().AllSlots = value;
-        }
-
-        /// <summary>
         /// Gets and sets whether the turn is over.
         /// </summary>
         public bool IsPlayed { get; set; }
