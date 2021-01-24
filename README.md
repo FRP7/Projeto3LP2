@@ -91,7 +91,7 @@ em contexto de aulas.
 
 **UML do Unity**
 
-![image](P3_Unity_UML)
+![image](P3_Unity_UML.JPG)
 
 ## Referências
 
