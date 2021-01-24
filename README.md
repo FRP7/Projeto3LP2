@@ -44,31 +44,24 @@ Na renderização do jogo na consola, para melhorarmos a performance e reduzirmos 
 
 
 
-**UML:**
+**UMLs**
 
 
 
-![image](P2_LP2_UML.JPG)
+**UML do código comum**
+
+![image](P3_Common_UML.JPG)
 
 
-**Flowchart do código comum**
+**UML da Consola**
+
+![image](P3_Console_UML.JPG)
 
 
+**UML do Unity**
 
-![image](P2_LP2_FLOW.JPG)
+![image](P3_Unity_UML)
 
-**Flowchart da Consola**
-
-
-
-![image](P2_LP2_FLOW.JPG)
-
-
-**Flowchart do Unity**
-
-
-
-![image](P2_LP2_FLOW.JPG)
 
 
 
