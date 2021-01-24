@@ -27,28 +27,20 @@ namespace ConsoleApp
         /// <returns> Checks whether the white color was chosen. </returns>
         private bool PickColor()
         {
-            string userInput = "";
+            ConsoleKey key = ConsoleKey.Backspace;
             bool isDone = false;
 
-            while(!isDone)
+            while (!isDone)
             {
-                Console.WriteLine("Choose a color: ");
-                Console.WriteLine("W = white,  B = black.");
-                userInput = Console.ReadLine().ToUpper();
-                if (userInput == "W" | userInput == "B")
-                {
+                Console.WriteLine("\n\tChoose your color: ");
+                Console.WriteLine("\tW = white,  B = black.");
+                key = Console.ReadKey(true).Key;
+                if (key == ConsoleKey.W | key == ConsoleKey.B)
                     isDone = true;
-                }
             }
 
-            if(userInput == "W")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            if (key == ConsoleKey.W) return true;
+            else return false;
         }
     }
 }
