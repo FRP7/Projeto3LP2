@@ -12,16 +12,14 @@ namespace ConsoleApp
     {
         // Enter the game.
         private SetupGame setupGame;
+        private Intro intro;
+        private SplashScreen splash;
 
         /// <summary>
         /// Método onde é exposto o menu principal.
         /// </summary>
         public void MainMenu()
         {
-            // Inicializações necessárias
-            Intro intro = new Intro();
-            SplashScreen splash = new SplashScreen();
-
             bool retry = false;
             ConsoleKey key = ConsoleKey.Backspace;
 
@@ -183,6 +181,8 @@ namespace ConsoleApp
         public Menu()
         {
             setupGame = new SetupGame();
+            intro = new Intro();
+            splash = new SplashScreen();
         }
     }
 }
