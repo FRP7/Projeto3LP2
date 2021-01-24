@@ -34,31 +34,36 @@ namespace ConsoleApp
                     "|___) ) __| |___) )   _| |__ ");
                 Console.WriteLine("\t\t\t          \\_/         \\____\\ " +
                     "\\________/  \\________/   /_____( \n");
-                // Enquanto o jogador não clicar
+
+                // While the player doesn't click.
                 while (!Console.KeyAvailable)
                 {
                     Console.WriteLine("\t\t\t\t\t\tPress ENTER to continue.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    // Apagar a linha anterior
+
+                    // Delete the line before.
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                     Console.WriteLine("\t\t\t\t\t\tPress       to continue.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
+
                     // Apagar a linha anterior
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                 }
-                // Variável que contem a opção do jogador
+
+                // The player's choice.
                 ConsoleKey key = Console.ReadKey(true).Key;
 
-                if (key == ConsoleKey.Enter) retry = false;
-                else retry = true;
+                retry = key != ConsoleKey.Enter;
             }
-            while (retry == true);
+            while (retry);
         }
     }
 }

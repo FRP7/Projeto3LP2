@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Common;
+﻿using Common;
 
 namespace ConsoleApp
 {
@@ -10,10 +8,10 @@ namespace ConsoleApp
     public class OpponentTurn
     {
         // The GameState class from Common.
-        private GameState gameState;
+        private readonly GameState gameState;
 
         /// <summary>
-        /// Gets and sets whether the turn is over.
+        /// Gets or sets a value indicating whether the turn is over.
         /// </summary>
         public bool IsPlayed { get; set; }
 
@@ -27,13 +25,10 @@ namespace ConsoleApp
         public void OpponentPlay(int piece, int slot, bool isPlayerWhite)
         {
 
-            if (ChoosePiece(piece))
+            if (ChoosePiece(piece) && CheckIfLegal(piece, slot))
             {
-                if (CheckIfLegal(piece, slot))
-                {
-                    PlayPiece(piece, slot, isPlayerWhite);
-                    IsPlayed = true;
-                }
+                PlayPiece(piece, slot, isPlayerWhite);
+                IsPlayed = true;
             }
         }
 
@@ -86,8 +81,7 @@ namespace ConsoleApp
         public OpponentTurn()
         {
             IsPlayed = false;
-           gameState = new GameState();
+            gameState = new GameState();
         }
     }
 }
-

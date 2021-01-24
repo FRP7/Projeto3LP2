@@ -10,10 +10,10 @@ namespace ConsoleApp
     public class PlayerTurn
     {
         // The GameState class from Common.
-        private GameState gameState; 
+        private readonly GameState gameState; 
 
         /// <summary>
-        /// Gets and sets whether the turn is over.
+        /// Gets or sets a value indicating whether the turn is over.
         /// </summary>
         public bool IsPlayed { get; set; }
 
@@ -26,13 +26,10 @@ namespace ConsoleApp
         /// </param>
         public void PlayerPlay(int piece, int slot, bool isPlayerWhite)
         {
-            if (ChoosePiece(piece))
+            if (ChoosePiece(piece) && CheckIfLegal(piece, slot))
             {
-                if (CheckIfLegal(piece, slot))
-                {
-                    PlayPiece(piece, slot, isPlayerWhite);
-                    IsPlayed = true;
-                }
+                PlayPiece(piece, slot, isPlayerWhite);
+                IsPlayed = true;
             }
         }
 

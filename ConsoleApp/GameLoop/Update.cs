@@ -1,6 +1,6 @@
 ﻿using System;
-using Common;
 using System.Collections.Generic;
+using Common;
 
 namespace ConsoleApp
 {
@@ -10,28 +10,29 @@ namespace ConsoleApp
     public class Update
     {
         // Check whether the player is the first to play.
-        private bool isPlayerFirst;
+        private readonly bool isPlayerFirst;
 
         // Gets and checks whether the player is the first to play.
         private bool IsPlayerWhite { get; }
 
-        // Gets and checks whether is the player's turn. 
+        /// <summary>
+        /// Gets a value indicating whether is the player's turn.
+        /// </summary>
         public bool IsPlayer { get; private set; }
 
-        // Gets and cheks whether is the opponent's turn.
+        /// <summary>
+        /// Gets a value indicating whether is the opponent's turn.
+        /// </summary>
         public bool IsOpponent { get; private set; }
-
-        // UserInput class.
-        private UserInput userInput;
 
         /// <summary>
         /// Delegate of the win checker method.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Returns an enum to point if someone won.</returns>
         public delegate Victory CheckWin();
 
         // Access the delegate CheckWin.
-        public CheckWin checkWin;
+        private readonly CheckWin checkWin;
 
         /// <summary>
         /// Delegate of the render game method.
@@ -42,7 +43,7 @@ namespace ConsoleApp
         public delegate void RenderGame(bool isPlayer, bool isOpponent);
 
         // Access the delegate RenderGame.
-        public RenderGame renderGame;
+        private readonly RenderGame renderGame;
 
         /// <summary>
         /// Delegate of the check user input.
@@ -50,10 +51,10 @@ namespace ConsoleApp
         public delegate void CheckUserInput();
 
         // Access the delegate CheckUserInput.
-        public CheckUserInput checkUserInput;
+        private readonly CheckUserInput checkUserInput;
 
         /// <summary>
-        /// Gets and sets all the slots in the game (whether are occupied by
+        /// Gets or sets all the slots in the game (whether are occupied by
         /// the player or not).
         /// </summary>
         public List<Tuple<SlotTypes, SlotColors>> GetAllSlots { get; set; }
@@ -97,13 +98,13 @@ namespace ConsoleApp
                 }
                 else if (checkWin.Invoke() == Victory.Opponent)
                 {
-                    // ganhou o oponente
+                    // The opponent won.
                     isGame = false;
                     gameResult.ShowGameResult(false);
                 }
                 else if (checkWin.Invoke() == Victory.Player)
                 {
-                    // ganhou o jogador
+                    // The player won.
                     isGame = false;
                     gameResult.ShowGameResult(true);
                 }
@@ -166,7 +167,9 @@ namespace ConsoleApp
         {
             OpponentTurn opponentTurn = new OpponentTurn();
             checkUserInput.Invoke();
-            opponentTurn.OpponentPlay(UserInput.Piece, UserInput.Slot,
+            opponentTurn.OpponentPlay(
+                UserInput.Piece,
+                UserInput.Slot,
                 IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
@@ -176,6 +179,7 @@ namespace ConsoleApp
                     IsOpponent = false;
                     IsPlayer = true;
                 }
+
                 UserInput.Piece = -1;
                 UserInput.Slot = -1;
             }
@@ -188,7 +192,9 @@ namespace ConsoleApp
         {
             PlayerTurn playerTurn = new PlayerTurn();
             checkUserInput.Invoke();
-            playerTurn.PlayerPlay(UserInput.Piece, UserInput.Slot,
+            playerTurn.PlayerPlay(
+                UserInput.Piece,
+                UserInput.Slot,
                 IsPlayerWhite);
             renderGame.Invoke(IsPlayer, IsOpponent);
             if (UserInput.Piece != -1 && UserInput.Slot != -1)
@@ -198,6 +204,7 @@ namespace ConsoleApp
                     IsPlayer = false;
                     IsOpponent = true;
                 }
+
                 UserInput.Piece = -1;
                 UserInput.Slot = -1;
             }
@@ -263,13 +270,17 @@ namespace ConsoleApp
         /// </param>
         /// <param name="isOpponent"> Checks whether it's the opponent's turn.
         /// </param>
-        public Update(bool isPlayerFirst, bool isPlayerWhite, 
-            CheckWin checkWin, RenderGame renderGame, 
-            CheckUserInput checkUserInput, bool isPlayer, bool isOpponent)
+        public Update(
+            bool isPlayerFirst,
+            bool isPlayerWhite,
+            CheckWin checkWin,
+            RenderGame renderGame,
+            CheckUserInput checkUserInput,
+            bool isPlayer,
+            bool isOpponent)
         {
             this.isPlayerFirst = isPlayerFirst;
             IsPlayerWhite = isPlayerWhite;
-            userInput = new UserInput();
             this.checkWin += checkWin;
             this.renderGame += renderGame;
             this.checkUserInput += checkUserInput;

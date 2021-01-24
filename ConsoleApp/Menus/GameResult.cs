@@ -2,24 +2,27 @@
 
 namespace ConsoleApp
 {
+    /// <summary>
+    /// Class where the game result is shown.
+    /// </summary>
     public class GameResult
     {
-        private SetupGame setupGame;
-        private Menu menu;
-
-        bool retry = false;
-        ConsoleKey key = ConsoleKey.Backspace;
-
-        // TRUE = ganhou o jogador  FALSE = ganhou o oponente
+        /// <summary>
+        /// Show the game's result.
+        /// </summary>
+        /// <param name="hasPlayerWon"> Check whether the player has won.
+        /// </param>
         public void ShowGameResult(bool hasPlayerWon)
         {
-            setupGame = new SetupGame();
-            menu = new Menu();
+            SetupGame setupGame = new SetupGame();
+            Menu menu = new Menu();
+            bool retry = false;
+            ConsoleKey key;
 
             Console.Clear();
             if (hasPlayerWon)
                 Console.WriteLine("\n\tThe player won!");
-            else if (!hasPlayerWon)
+            else
                 Console.WriteLine("\n\tThe opponent won!");
 
             Console.WriteLine("\n\n\n\t(M)ENU");
@@ -27,9 +30,10 @@ namespace ConsoleApp
             Console.WriteLine("\n\t(E)XIT");
             do
             {
-                // Variável que contem a opção do jogador
+                // The player's choice.
                 key = Console.ReadKey(true).Key;
-                // Switch para verificar qual opção foi escolhida
+
+                // Check which option is chosen.
                 switch (key)
                 {
                     case ConsoleKey.M:
@@ -38,6 +42,7 @@ namespace ConsoleApp
                         break;
                     case ConsoleKey.R:
                         Console.Clear();
+
                         // Enter the game.
                         setupGame.SetGame();
                         break;
@@ -48,11 +53,11 @@ namespace ConsoleApp
                         retry = true;
                         break;
                 }
-            } while (retry == true);
+            } while (retry);
         }
 
         /// <summary>
-        /// Sair do jogo.
+        /// Exit game.
         /// </summary>
         private void Exit()
         {
