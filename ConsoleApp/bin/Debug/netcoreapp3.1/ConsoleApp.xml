@@ -11,18 +11,18 @@
         </member>
         <member name="P:Common.GameData.PlayerType">
             <summary>
-            Gets and sets the player's color.
+            Gets or sets the player's color.
             </summary>
         </member>
         <member name="P:Common.GameData.AllSlots">
             <summary>
-            Gets and sets all the slots in the board (whether are occupied by 
+            Gets or sets all the slots in the board (whether are occupied by
             the player or not).
             </summary>
         </member>
         <member name="P:Common.GameData.PlayerLegalPlays">
             <summary>
-            List of all current possible plays. 
+            Gets or sets of all current possible plays.
             </summary>
         </member>
         <member name="M:Common.GameData.#ctor">
@@ -42,38 +42,34 @@
         </member>
         <member name="P:Common.GameState.PlayerType">
             <summary>
-            Gets and sets the player's color.
+            Gets or sets the player's color.
             </summary>
         </member>
         <member name="P:Common.GameState.AllSlots">
             <summary>
-            Gets and sets all the pieces in the game (whether are occupied by
+            Gets or sets all the pieces in the game (whether are occupied by
             the player or not.
             </summary>
         </member>
         <member name="P:Common.GameState.PlayerLegalPlays">
             <summary>
-            List of all current possible plays for the player.
+            Gets or sets of all current possible plays for the player.
             </summary>
         </member>
         <member name="P:Common.GameState.IsPlayerFirst">
             <summary>
-            Gets and sets whether the player is the first to play.
+            Gets or sets a value indicating whether the player is the first to
+            play.
             </summary>
         </member>
         <member name="P:Common.GameState.HasPlayerWon">
             <summary>
-            Gets and sets whether the player has won.
+            Gets or sets a value indicating whether the player has won.
             </summary>
         </member>
         <member name="P:Common.GameState.HasOpponentWon">
             <summary>
-            Gets and sets whether the opponent has won.
-            </summary>
-        </member>
-        <member name="T:Common.GameState.GameLoop">
-            <summary>
-            Delegate of the game loop.
+            Gets or sets a value indicating whether the opponent has won.
             </summary>
         </member>
         <member name="M:Common.GameState.Start">
@@ -85,7 +81,7 @@
             <summary>
             Check who starts first.
             </summary>
-            <returns> Returns true whether the player is the first to play. 
+            <returns> Returns true whether the player is the first to play.
             </returns>
         </member>
         <member name="M:Common.GameState.CheckPlayerLegalPlays(System.Int32)">
@@ -93,13 +89,13 @@
             List all the current possible plays.
             </summary>
             <param name="piece"> Chosen piece.</param>
-            <returns></returns>
+            <returns> Returns true if there's at least one legal play.
+            </returns>
         </member>
-        <member name="M:Common.GameState.CheckIfLegal(System.Int32,System.Int32)">
+        <member name="M:Common.GameState.CheckIfLegal(System.Int32)">
             <summary>
             Checks whether the chosen play is legal.
             </summary>
-            <param name="piece"> Chosen piece.</param>
             <param name="slot"> Chose slot.</param>
             <returns> Returns true whether is legal.</returns>
         </member>
@@ -139,7 +135,7 @@
             <summary>
             Check if there's any victory.
             </summary>
-            <returns> Returns Player if the player won or Opponent if the 
+            <returns> Returns Player if the player won or Opponent if the
             opponent won or None if there's no victory yet.</returns>
         </member>
         <member name="M:Common.GameState.#ctor">
@@ -165,7 +161,7 @@
             Method to access service.
             </summary>
             <typeparam name="T"> Service type.</typeparam>
-            <returns></returns>
+            <returns> Returns service.</returns>
         </member>
         <member name="T:Common.SetBoard">
             <summary>
@@ -174,12 +170,12 @@
         </member>
         <member name="P:Common.SetBoard.PlayerType">
             <summary>
-            Gets and sets the player's color.
+            Gets or sets the player's color.
             </summary>
         </member>
         <member name="P:Common.SetBoard.AllSlots">
             <summary>
-            Gets and sets the list of all slots in the board (whether are
+            Gets or sets the list of all slots in the board (whether are
             occupied by the player or not).
             </summary>
         </member>
@@ -261,6 +257,47 @@
         <member name="F:Common.Victory.None">
             <summary>
             Nobody won yet.
+            </summary>
+        </member>
+        <member name="T:ConsoleApp.DoubleBuffer`1">
+            <summary>
+            Class that controls the render's update.
+            </summary>
+            <typeparam name="T"> Type of render.</typeparam>
+        </member>
+        <member name="P:ConsoleApp.DoubleBuffer`1.XDim">
+            <summary>
+            Gets a value indicating the width of the current render.
+            </summary>
+        </member>
+        <member name="P:ConsoleApp.DoubleBuffer`1.YDim">
+            <summary>
+            Gets a value indicating the height of the current render.
+            </summary>
+        </member>
+        <member name="P:ConsoleApp.DoubleBuffer`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Indexer.
+            </summary>
+            <param name="x"> Render width.</param>
+            <param name="y">Render height.</param>
+            <returns> Returns DoubleBuffer.</returns>
+        </member>
+        <member name="M:ConsoleApp.DoubleBuffer`1.Clear">
+            <summary>
+            Clear the next render array.
+            </summary>
+        </member>
+        <member name="M:ConsoleApp.DoubleBuffer`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initialize the variables.
+            </summary>
+            <param name="x"> Render's width.</param>
+            <param name="y"> Render's height.</param>
+        </member>
+        <member name="M:ConsoleApp.DoubleBuffer`1.Swap">
+            <summary>
+            Swap the current render with the next render.
             </summary>
         </member>
         <member name="T:ConsoleApp.GameLoop">
@@ -351,11 +388,10 @@
             <param name="piece"> Chosen piece.</param>
             <returns> Returns true if the piece is legal.</returns>
         </member>
-        <member name="M:ConsoleApp.OpponentTurn.CheckIfLegal(System.Int32,System.Int32)">
+        <member name="M:ConsoleApp.OpponentTurn.CheckIfLegal(System.Int32)">
             <summary>
             Check if the chosen play is legal.
             </summary>
-            <param name="piece"> Chosen piece.</param>
             <param name="slot"> Chosen slot.</param>
             <returns> Returns true if the chosen play is legal. </returns>
         </member>
@@ -399,11 +435,10 @@
             <param name="piece"> Chosen piece.</param>
             <returns> Returns true if the piece is legal.</returns>
         </member>
-        <member name="M:ConsoleApp.PlayerTurn.CheckIfLegal(System.Int32,System.Int32)">
+        <member name="M:ConsoleApp.PlayerTurn.CheckIfLegal(System.Int32)">
             <summary>
             Check if the chosen play is legal.
             </summary>
-            <param name="piece"> Chosen piece.</param>
             <param name="slot"> Chosen slot.</param>
             <returns> Returns true if the chosen play is legal. </returns>
         </member>
@@ -533,7 +568,7 @@
             <summary>
             Initialize the variables.
             </summary>
-            <param name="isPlayerFirst"> Checks whether the player is the first 
+            <param name="isPlayerFirst"> Checks whether the player is the first
             to play.</param>
             <param name="isPlayerWhite"> Checks whether the player is white.
             </param>

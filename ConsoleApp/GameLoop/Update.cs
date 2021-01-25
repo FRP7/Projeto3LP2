@@ -127,7 +127,6 @@ namespace ConsoleApp
             }
             else if (IsPlayer)
             {
-
                 while (IsPlayer)
                 {
                     checkUserInput.Invoke();
@@ -257,7 +256,7 @@ namespace ConsoleApp
         /// <summary>
         /// Initialize the variables.
         /// </summary>
-        /// <param name="isPlayerFirst"> Checks whether the player is the first 
+        /// <param name="isPlayerFirst"> Checks whether the player is the first
         /// to play.</param>
         /// <param name="isPlayerWhite"> Checks whether the player is white.
         /// </param>

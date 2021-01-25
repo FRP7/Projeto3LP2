@@ -24,8 +24,7 @@ namespace ConsoleApp
         /// </param>
         public void OpponentPlay(int piece, int slot, bool isPlayerWhite)
         {
-
-            if (ChoosePiece(piece) && CheckIfLegal(piece, slot))
+            if (ChoosePiece(piece) && CheckIfLegal(slot))
             {
                 PlayPiece(piece, slot, isPlayerWhite);
                 IsPlayed = true;
@@ -44,16 +43,14 @@ namespace ConsoleApp
             return true;
         }
 
-
         /// <summary>
         /// Check if the chosen play is legal.
         /// </summary>
-        /// <param name="piece"> Chosen piece.</param>
         /// <param name="slot"> Chosen slot.</param>
         /// <returns> Returns true if the chosen play is legal. </returns>
-        private bool CheckIfLegal(int piece, int slot)
+        private bool CheckIfLegal(int slot)
         {
-            return gameState.CheckIfLegal(piece, slot);
+            return gameState.CheckIfLegal(slot);
         }
 
         /// <summary>

@@ -22,9 +22,6 @@ namespace ConsoleApp
         /// </summary>
         public void CheckUserInput()
         {
-            int piece;
-            int slot;
-
             // The user input.
             string userInput;
 
@@ -43,7 +40,7 @@ namespace ConsoleApp
                 {
                     userInput = Console.ReadLine();
 
-                    if (int.TryParse(userInput, out piece) && piece <= 12)
+                    if (int.TryParse(userInput, out int piece) && piece <= 12)
                     {
                         isInput1 = true;
                         Piece = piece;
@@ -55,7 +52,7 @@ namespace ConsoleApp
                 {
                     userInput = Console.ReadLine();
 
-                    if (int.TryParse(userInput, out slot) && slot <= 12)
+                    if (int.TryParse(userInput, out int slot) && slot <= 12)
                     {
                         isInput2 = true;
                         Slot = slot;

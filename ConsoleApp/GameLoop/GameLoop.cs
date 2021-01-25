@@ -83,15 +83,14 @@ namespace ConsoleApp
         private void Update()
         {
             Update update = new Update(
-                IsPlayerFirst, 
-                IsPlayerWhite, 
+                IsPlayerFirst,
+                IsPlayerWhite,
                 gameState.CheckWin,
                 RenderGame,
                 CheckUserInput,
                 isPlayer,
                 isOpponent);
             update.UpdateGame(GetAllSlots);
-
         }
 
         /// <summary>

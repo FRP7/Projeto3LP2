@@ -363,7 +363,6 @@ namespace ConsoleApp
         /// <param name="db"> The DOubleBuffer instance. </param>
         private void PrintToScreen(DoubleBuffer<char> db)
         {
-
             // Draw the board.
             for (int y = 0; y < db.YDim; y++)
             {
