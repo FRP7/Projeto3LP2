@@ -8,7 +8,7 @@ using Common;
 public class OpponentTurn
 {
     // Access the GameState class (common)
-    private GameState gameState; 
+    private readonly GameState gameState; 
 
     /// <summary>
     /// Gets or sets whether the turn is played.
@@ -27,7 +27,7 @@ public class OpponentTurn
         {
             if (ChoosePiece(piece))
             {
-                if (CheckIfLegal(piece, slot))
+                if (CheckIfLegal(slot))
                 {
                     PlayPiece(piece, slot, isPlayerWhite);
                     IsPlayed = true;
@@ -54,9 +54,9 @@ public class OpponentTurn
     /// <param name="piece"> The chosen piece.</param>
     /// <param name="slot"> The chosen slot.</param>
     /// <returns> Returns true if the chosen play is legal.</returns>
-    private bool CheckIfLegal(int piece, int slot)
+    private bool CheckIfLegal(int slot)
     {
-        return gameState.CheckIfLegal(piece, slot);
+        return gameState.CheckIfLegal(slot);
     }
 
     /// <summary>
