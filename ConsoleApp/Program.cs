@@ -1,7 +1,4 @@
-﻿using System;
-using Common;
-
-namespace ConsoleApp
+﻿namespace ConsoleApp
 {
     /// <summary>
     /// Begin the game.

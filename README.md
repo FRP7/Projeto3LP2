@@ -10,10 +10,22 @@
  - Relatório
  
  **Nuno Figueiredo a21705451:**
+ - Criação e implementação do menu principal (Consola).
+ - Criação e implementação das instruções (Consola).
+ - Criação e implementação dos créditos (Consola).
+  - Melhoramentos no *SetupGame* (*Unity*).
+  - Melhoramentos no *GameResult* (*Unity*).
+  - Criação e implementação do menu principal (*Unity*).
+  -  Criação e implementação das instruções (*Unity*).
+  -  Criação e implementação dos créditos (*Unity*).
+  -  Melhoramento da scene de escolha da cor (*Unity*).
+  -  Melhoramento da *scene* com o resultado (*Unity*).
+  -  Melhoramentos no tabuleiro de jogo, peças e interface de jogo (*Unity*).
  
  **André Cosme a21802129:**
  
  **Repositório do projeto**: https://github.com/FRP7/Projeto3LP2
+ 
  **Repositório do código comum**: https://github.com/FRP7/Projeto3LP2_Common
  
 # Arquitetura da solução
@@ -111,6 +123,9 @@ public static int AddUp(params int[] values)
 ```
 Para criar o *DoubleBuffer*, utilizei este exercício feito numa das aulas:
 https://github.com/VideojogosLusofona/lp2_2020_aulas/tree/main/Aula11/Exercicio1
+
+Para o Nuno criar o texto do título do jogo na Consola, ele utilizou este
+website: https://patorjk.com/software/taag/#p=display&f=Jacky&t=Felli
 
 Utilizei também o *Service Locator* feito pelo professor demostrado numa das 
 aulas.
