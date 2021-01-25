@@ -1,32 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class GameResult : MonoBehaviour
+namespace UnityApp
 {
-    [SerializeField] private ResultSO resultSO;
-    [SerializeField] private GameObject playerUI;
-    [SerializeField] private GameObject opponentUI;
-
-    private void Awake()
+    /// <summary>
+    /// Class where the game's result is shown.
+    /// </summary>
+    public class GameResult : MonoBehaviour
     {
-        playerUI.SetActive(false);
-        opponentUI.SetActive(false);
-    }
+        [SerializeField]
+        private ResultSO resultSO;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if(resultSO.HasPlayerWon)
+        [SerializeField]
+        private GameObject playerUI;
+
+        [SerializeField]
+        private GameObject opponentUI;
+
+        private void Awake()
         {
-            // mostrar UI de vitoria do jogador
-            playerUI.SetActive(true);
+            playerUI.SetActive(false);
+            opponentUI.SetActive(false);
         }
-        else if(!resultSO.HasPlayerWon)
+
+        // Start is called before the first frame update
+        private void Start()
         {
-            // mostrar UI de vitoria do oponente
-            opponentUI.SetActive(true);
+            if (resultSO.HasPlayerWon)
+            {
+                // mostrar UI de vitoria do jogador
+                playerUI.SetActive(true);
+            }
+            else if (!resultSO.HasPlayerWon)
+            {
+                // mostrar UI de vitoria do oponente
+                opponentUI.SetActive(true);
+            }
         }
     }
 }

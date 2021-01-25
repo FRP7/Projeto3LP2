@@ -1,78 +1,87 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-/// <summary>
-/// Class where the game's UI is controlled.
-/// </summary>
-public class UIController : MonoBehaviour
+namespace UnityApp
 {
-    // InputField that gets the piece's number.
-    [SerializeField] private InputField piece;
-
-    // InputField that gets the slot's number.
-    [SerializeField] private InputField slot;
-
-    // Play button.
-    [SerializeField] private Button playButton;
-
-    // GameManager GameObject.
-    [SerializeField] private GameObject gameManager;
-
-    // UI that shows if it's the player's turn.
-    [SerializeField] private GameObject PlayerTurn;
-
-    // UI that show if it's the opponent's turn.
-    [SerializeField] private GameObject OpponentTurn;
-
     /// <summary>
-    /// Method that is called before the game starts.
+    /// Class where the game's UI is controlled.
     /// </summary>
-    private void Awake()
+    public class UIController : MonoBehaviour
     {
-        PlayerTurn.SetActive(false);
-        OpponentTurn.SetActive(false);
-    }
+        // InputField that gets the piece's number.
+        [SerializeField]
+        private InputField piece;
 
-    /// <summary>
-    /// Method that is called every frame.
-    /// </summary>
-    private void Update()
-    {
-        if(gameManager.GetComponent<UnityGame>().IsPlayer)
+        // InputField that gets the slot's number.
+        [SerializeField]
+        private InputField slot;
+
+        // Play button.
+        [SerializeField]
+        private Button playButton;
+
+        // GameManager GameObject.
+        [SerializeField]
+        private GameObject gameManager;
+
+        // UI that shows if it's the player's turn.
+        [SerializeField]
+        private GameObject playerTurn;
+
+        // UI that show if it's the opponent's turn.
+        [SerializeField]
+        private GameObject opponentTurn;
+
+        /// <summary>
+        /// Check button click.
+        /// </summary>
+        public void ClickButton()
         {
-            OpponentTurn.SetActive(false);
-            PlayerTurn.SetActive(true);
-        } 
-        else if(gameManager.GetComponent<UnityGame>().IsOpponent)
-        {
-            PlayerTurn.SetActive(false);
-            OpponentTurn.SetActive(true);
-        }
-    }
+            string support = piece.GetComponent<InputField>().text;
+            int convertPeca = -1;
+            int convertSlot = -1;
 
-    /// <summary>
-    /// Check button click.
-    /// </summary>
-    public void ClickButton()
-    {
-        string support = piece.GetComponent<InputField>().text;
-        int convertPeca = -1;
-        int convertSlot = -1;
-
-        if (Int32.TryParse(support, out convertPeca))
-        {
-            support = slot.GetComponent<InputField>().text;
-
-            if (Int32.TryParse(support, out convertSlot))
+            if (int.TryParse(support, out convertPeca))
             {
-                // hurray
-                gameManager.GetComponent<UnityGame>().Piece = convertPeca;
-                gameManager.GetComponent<UnityGame>().Slot = convertSlot;
-                gameManager.GetComponent<UnityGame>().IsPlayed = true;
-                piece.text = "";
-                slot.text = "";
-            } 
+                support = slot.GetComponent<InputField>().text;
+
+                if (int.TryParse(support, out convertSlot))
+                {
+                    // hurray
+                    gameManager.GetComponent<UnityGame>().Piece = convertPeca;
+                    gameManager.GetComponent<UnityGame>().Slot = convertSlot;
+                    gameManager.GetComponent<UnityGame>().IsPlayed = true;
+                    piece.text = string.Empty;
+                    slot.text = string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that is called before the game starts.
+        /// </summary>
+        private void Awake()
+        {
+            playerTurn.SetActive(false);
+            opponentTurn.SetActive(false);
+        }
+
+        /// <summary>
+        /// Method that is called every frame.
+        /// </summary>
+        private void Update()
+        {
+            if (gameManager.GetComponent<UnityGame>().IsPlayer)
+            {
+                opponentTurn.SetActive(false);
+                playerTurn.SetActive(true);
+            }
+            else if (gameManager.GetComponent<UnityGame>().IsOpponent)
+            {
+                playerTurn.SetActive(false);
+                opponentTurn.SetActive(true);
+            }
         }
     }
 }

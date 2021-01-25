@@ -2987,7 +2987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb692ea308a74d9c06c6b28169f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllObjects:
+  colorSpec: {fileID: 11400000, guid: 05c1a46b369f11649b222b7e3366ea95, type: 2}
+  allObjects:
   - {fileID: 725525331}
   - {fileID: 1894265050}
   - {fileID: 2022609363}
@@ -3001,13 +3002,7 @@ MonoBehaviour:
   - {fileID: 1378742187}
   - {fileID: 259402970}
   - {fileID: 29931678}
-  piece: 0
-  slot: -1
-  isPlayed: 0
-  isPlayer: 0
-  isOpponent: 0
   resultSO: {fileID: 11400000, guid: bbd69157bb6d70348a7c0126f6b92b3e, type: 2}
-  colorSpec: {fileID: 11400000, guid: 05c1a46b369f11649b222b7e3366ea95, type: 2}
 --- !u!4 &1129196735
 Transform:
   m_ObjectHideFlags: 0
@@ -3038,8 +3033,8 @@ MonoBehaviour:
   slot: {fileID: 777983282}
   playButton: {fileID: 322184422}
   gameManager: {fileID: 1129196733}
-  PlayerTurn: {fileID: 1261999538}
-  OpponentTurn: {fileID: 918291683}
+  playerTurn: {fileID: 1261999538}
+  opponentTurn: {fileID: 918291683}
 --- !u!1 &1203836002
 GameObject:
   m_ObjectHideFlags: 0
