@@ -2240,7 +2240,7 @@ GameObject:
   - component: {fileID: 1891654766}
   - component: {fileID: 1891654765}
   m_Layer: 5
-  m_Name: InstrutionsButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2384,7 +2384,7 @@ GameObject:
   - component: {fileID: 1933752084}
   - component: {fileID: 1933752083}
   m_Layer: 5
-  m_Name: InstrutionsButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2759,11 +2759,11 @@ MonoBehaviour:
 
     Pieces can move to an empty spot.
 
-    Pieces can
-    capture one enemy piece if they jump across, landing on an empty spot.
+    Pieces can capture
+    one enemy piece if they jump across, landing on an empty spot.
 
-    The
-    game ends when one color has no pieces on the board.
+    The game
+    ends when one color has no pieces on the board.
 
     Good Luck!'
   m_isRightToLeft: 0
