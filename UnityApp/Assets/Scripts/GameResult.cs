@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class GameResult : MonoBehaviour
 {
+    //  Access the results ScriptableObject.
     [SerializeField] private ResultSO resultSO;
+
+    // Access the player's UI.
     [SerializeField] private GameObject playerUI;
+
+    // Access the opponent's UI.
     [SerializeField] private GameObject opponentUI;
 
     private void Awake()
@@ -16,16 +18,16 @@ public class GameResult : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         if(resultSO.HasPlayerWon)
         {
-            // mostrar UI de vitoria do jogador
+            // Show the victory UI of the player.
             playerUI.SetActive(true);
         }
         else if(!resultSO.HasPlayerWon)
         {
-            // mostrar UI de vitoria do oponente
+            // Show the victory UI of the opponent.
             opponentUI.SetActive(true);
         }
     }

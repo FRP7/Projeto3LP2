@@ -31,6 +31,7 @@ public class UnityGame : MonoBehaviour
     // Checks whether is the opponent's turn.
     [SerializeField] private bool isOpponent;
 
+    // Access the results ScriptableObject.
     [SerializeField] private ResultSO resultSO;
 
     /// <summary>
