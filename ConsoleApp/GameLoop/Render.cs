@@ -8,16 +8,9 @@ namespace ConsoleApp
     public class Render
     {
         /// <summary>
-        /// Gets and sets the board slot characters.
+        /// Gets or sets the board slot characters.
         /// </summary>
-        public static char[] Slots
-        {
-            get => slots;
-            set => slots = value;
-        }
-
-        // The board slot characters.
-        private static char[] slots;
+        public static char[] Slots { get; set; }
 
         private DoubleBuffer<char> db;
 
@@ -45,7 +38,7 @@ namespace ConsoleApp
             {
                 if (i == 2)
                 {
-                    db[i, 1] = slots[10];
+                    db[i, 1] = Slots[10];
                 }
                 else if (i > 2 && i < 11)
                 {
@@ -53,7 +46,7 @@ namespace ConsoleApp
                 }
                 else if (i == 11)
                 {
-                    db[i, 1] = slots[11];
+                    db[i, 1] = Slots[11];
                 }
                 else if (i > 11 && i < 20)
                 {
@@ -61,7 +54,7 @@ namespace ConsoleApp
                 }
                 else if (i == 20)
                 {
-                    db[i, 1] = slots[12];
+                    db[i, 1] = Slots[12];
                 }
             }
 
@@ -113,7 +106,7 @@ namespace ConsoleApp
             {
                 if (i == 6)
                 {
-                    db[i, 5] = slots[9];
+                    db[i, 5] = Slots[9];
                 }
                 else if (i > 6 && i < 11)
                 {
@@ -121,7 +114,7 @@ namespace ConsoleApp
                 }
                 else if (i == 11)
                 {
-                    db[i, 5] = slots[8];
+                    db[i, 5] = Slots[8];
                 }
                 else if (i > 11 && i < 16)
                 {
@@ -129,7 +122,7 @@ namespace ConsoleApp
                 }
                 else if (i == 16)
                 {
-                    db[i, 5] = slots[7];
+                    db[i, 5] = Slots[7];
                 }
             }
 
@@ -202,7 +195,7 @@ namespace ConsoleApp
             {
                 if (i == 11)
                 {
-                    db[i, 10] = slots[6];
+                    db[i, 10] = Slots[6];
                 }
             }
 
@@ -271,7 +264,7 @@ namespace ConsoleApp
             {
                 if (i == 6)
                 {
-                    db[i, 15] = slots[5];
+                    db[i, 15] = Slots[5];
                 }
                 else if (i > 6 && i < 11)
                 {
@@ -279,7 +272,7 @@ namespace ConsoleApp
                 }
                 else if (i == 11)
                 {
-                    db[i, 15] = slots[4];
+                    db[i, 15] = Slots[4];
                 }
                 else if (i > 11 && i < 16)
                 {
@@ -287,7 +280,7 @@ namespace ConsoleApp
                 }
                 else if (i == 16)
                 {
-                    db[i, 15] = slots[3];
+                    db[i, 15] = Slots[3];
                 }
             }
 
@@ -343,7 +336,7 @@ namespace ConsoleApp
             {
                 if (i == 2)
                 {
-                    db[i, 19] = slots[0];
+                    db[i, 19] = Slots[0];
                 }
                 else if (i > 2 && i < 11)
                 {
@@ -351,7 +344,7 @@ namespace ConsoleApp
                 }
                 else if (i == 11)
                 {
-                    db[i, 19] = slots[1];
+                    db[i, 19] = Slots[1];
                 }
                 else if (i > 11 && i < 20)
                 {
@@ -359,7 +352,7 @@ namespace ConsoleApp
                 }
                 else if (i == 20)
                 {
-                    db[i, 19] = slots[2];
+                    db[i, 19] = Slots[2];
                 }
             }
         }
@@ -367,10 +360,9 @@ namespace ConsoleApp
         /// <summary>
         /// Print the board to the screen.
         /// </summary>
-        /// <param name="db"></param>
+        /// <param name="db"> The DOubleBuffer instance. </param>
         private void PrintToScreen(DoubleBuffer<char> db)
         {
-
             // Draw the board.
             for (int y = 0; y < db.YDim; y++)
             {
@@ -382,6 +374,7 @@ namespace ConsoleApp
                         Console.Write(db[x, y]);
                     }
                 }
+
                 Console.WriteLine();
             }
 
@@ -433,11 +426,11 @@ namespace ConsoleApp
         /// </summary>
         public Render()
         {
-            slots = new char[]
+            Slots = new char[]
            {
                 '.', '.', '.', '.', '.', '.',
                 '.',
-                '.', '.', '.', '.', '.', '.'
+                '.', '.', '.', '.', '.', '.',
            };
         }
     }

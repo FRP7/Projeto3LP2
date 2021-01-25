@@ -7,15 +7,12 @@ namespace ConsoleApp
     /// </summary>
     public class SetupGame
     {
-        // Checks whether the player is white.
-        private bool isPlayerWhite;
-
         /// <summary>
         /// Set the game.
         /// </summary>
         public void SetGame()
         {
-            isPlayerWhite = PickColor();
+            bool isPlayerWhite = PickColor();
             GameLoop gameLoop = new GameLoop(isPlayerWhite);
             Console.Clear();
             gameLoop.Game();
@@ -35,12 +32,11 @@ namespace ConsoleApp
                 Console.WriteLine("\n\tChoose your color: ");
                 Console.WriteLine("\tW = white,  B = black.");
                 key = Console.ReadKey(true).Key;
-                if (key == ConsoleKey.W | key == ConsoleKey.B)
+                if (key == ConsoleKey.W || key == ConsoleKey.B)
                     isDone = true;
             }
 
-            if (key == ConsoleKey.W) return true;
-            else return false;
+            return key == ConsoleKey.W;
         }
     }
 }

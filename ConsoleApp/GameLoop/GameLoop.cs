@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
-using Common;
 using System.Collections.Generic;
+using Common;
 
 namespace ConsoleApp
 {
@@ -10,9 +10,6 @@ namespace ConsoleApp
     /// </summary>
     public class GameLoop
     {
-        // Access Update class.
-        private Update update;
-
         // Access Render class.
         private Render render;
 
@@ -23,12 +20,12 @@ namespace ConsoleApp
         private GameState gameState;
 
         /// <summary>
-        /// Gets or sets whether the player is white.
+        /// Gets or sets a value indicating whether the player is white.
         /// </summary>
         public bool IsPlayerWhite { get; set; }
 
         /// <summary>
-        /// Gets whether the player is the first to play.
+        /// Gets a value indicating whether the player is the first to play.
         /// </summary>
         public bool IsPlayerFirst => gameState.IsPlayerFirst;
 
@@ -85,11 +82,15 @@ namespace ConsoleApp
         /// </summary>
         private void Update()
         {
-            update = new Update(IsPlayerFirst, IsPlayerWhite, 
-                gameState.CheckWin, RenderGame, CheckUserInput, isPlayer,
+            Update update = new Update(
+                IsPlayerFirst,
+                IsPlayerWhite,
+                gameState.CheckWin,
+                RenderGame,
+                CheckUserInput,
+                isPlayer,
                 isOpponent);
             update.UpdateGame(GetAllSlots);
-
         }
 
         /// <summary>
@@ -167,6 +168,5 @@ namespace ConsoleApp
         {
             IsPlayerWhite = isPlayerWhite;
         }
-
     }
 }

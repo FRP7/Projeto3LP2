@@ -6,7 +6,7 @@ namespace ConsoleApp
     /// <summary>
     /// Begin the game.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Call the main menu.

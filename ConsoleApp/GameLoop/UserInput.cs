@@ -3,33 +3,19 @@
 namespace ConsoleApp
 {
     /// <summary>
-    /// Class where is read the user input. 
+    /// Class where is read the user input.
     /// </summary>
     public class UserInput
     {
         /// <summary>
-        /// Gets and sets the piece chosen by the player.
+        /// Gets or sets the piece chosen by the player.
         /// </summary>
-        public static int Piece
-        {
-            get => piece;
-            set => piece = value;
-        }
+        public static int Piece { get; set; }
 
         /// <summary>
-        /// Gets and sets the slot chosen by the player.
+        /// Gets or sets the slot chosen by the player.
         /// </summary>
-        public static int Slot
-        {
-            get => slot;
-            set => slot = value;
-        }
-
-        // The piece chosen by the player.
-        private static int piece;
-
-        // The slot chosen by the player.
-        private static int slot;
+        public static int Slot { get; set; }
 
         /// <summary>
         /// Check the player's input.
@@ -54,12 +40,10 @@ namespace ConsoleApp
                 {
                     userInput = Console.ReadLine();
 
-                    if(Int32.TryParse(userInput, out piece))
+                    if (int.TryParse(userInput, out int piece) && piece <= 12)
                     {
-                        if (piece <= 12)
-                        {
-                            isInput1 = true;
-                        }
+                        isInput1 = true;
+                        Piece = piece;
                     }
                 }
 
@@ -68,24 +52,13 @@ namespace ConsoleApp
                 {
                     userInput = Console.ReadLine();
 
-                    if (Int32.TryParse(userInput, out slot))
+                    if (int.TryParse(userInput, out int slot) && slot <= 12)
                     {
-                        if (piece <= 12)
-                        {
-                            isInput2 = true;
-                        }
+                        isInput2 = true;
+                        Slot = slot;
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Initialize variables.
-        /// </summary>
-        public UserInput()
-        {
-            piece = -1;
-            slot = -1;
         }
     }
 }

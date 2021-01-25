@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApp
 {
@@ -11,23 +9,22 @@ namespace ConsoleApp
     public class Menu
     {
         // Enter the game.
-        private SetupGame setupGame;
-        private Intro intro;
-        private SplashScreen splash;
+        private readonly SetupGame setupGame;
+        private readonly Intro intro;
+        private readonly SplashScreen splash;
 
         /// <summary>
-        /// Método onde é exposto o menu principal.
+        /// Method where the main menu is played.
         /// </summary>
         public void MainMenu()
         {
             bool retry = false;
-            ConsoleKey key = ConsoleKey.Backspace;
-
+            ConsoleKey key;
             intro.PlayIntro();
 
             splash.PlaySplashScreen();
 
-            // Mostrar o menu principal
+            // Show the main menu.
             do
             {
                 Console.Clear();
@@ -51,22 +48,25 @@ namespace ConsoleApp
                 Console.WriteLine("\n\t\t\t\t\t\t    (I)NSTRUTIONS");
                 Console.WriteLine("\n\t\t\t\t\t\t      (C)REDITS");
                 Console.WriteLine("\n\t\t\t\t\t\t       (E)XIT");
-                // Variável que contem a opção do jogador
+
+                // The player's choice.
                 key = Console.ReadKey(true).Key;
-                // Switch para verificar qual opção foi escolhida
+
+                // Check which option is chose.
                 switch (key)
                 {
                     case ConsoleKey.P:
                         Console.Clear();
+
                         // Enter the game.
                         setupGame.SetGame();
                         break;
                     case ConsoleKey.I:
-                        Instructions(key, retry);
+                        Instructions();
                         retry = true;
                         break;
                     case ConsoleKey.C:
-                        Credits(key, retry);
+                        Credits();
                         retry = true;
                         break;
                     case ConsoleKey.E:
@@ -76,16 +76,16 @@ namespace ConsoleApp
                         retry = true;
                         break;
                 }
-            } while (retry == true);
+            } while (retry);
         }
 
         /// <summary>
-        /// Páginas das instruções.
+        ///  Instructions page.
         /// </summary>
-        /// <param name="key"> Input do jogador. </param>
-        /// <param name="retry"> Indicar se pode voltar atrás. </param>
-        private void Instructions(ConsoleKey key, bool retry)
+        private void Instructions()
         {
+            bool retry;
+            ConsoleKey key;
             do
             {
                 Console.Clear();
@@ -99,40 +99,45 @@ namespace ConsoleApp
                 Console.WriteLine("\tPieces can capture one enemy piece if they jump across, landing on an empty spot.");
                 Console.WriteLine("\tThe game ends when one color has no pieces on the board.");
                 Console.WriteLine("\tGood Luck!\n");
-                // Enquanto o jogador não clicar
+
+                // While the player doesn't click.
                 while (!Console.KeyAvailable)
                 {
                     Console.WriteLine("\tPress ESQ to retreat to the menu.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    // Apagar a linha anterior
+
+                    // Delete the line before.
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                     Console.WriteLine("\tPress     to retreat to the menu.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    // Apagar a linha anterior
+
+                    // Delete the line before.
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                 }
-                // Variável que contem a opção do jogador
+
+                // The player's choice.
                 key = Console.ReadKey(true).Key;
 
-                if (key == ConsoleKey.Escape) retry = false;
-                else retry = true;
+                retry = key != ConsoleKey.Escape;
             }
-            while (retry == true);
+            while (retry);
         }
 
         /// <summary>
         /// Página dos créditos.
         /// </summary>
-        /// <param name="key"> Input do jogador. </param>
-        /// <param name="retry"> Indicar se pode voltar atrás. </param>
-        private void Credits(ConsoleKey key, bool retry)
+        private void Credits()
         {
+            ConsoleKey key;
+            bool retry;
             do
             {
                 Console.Clear();
@@ -140,35 +145,40 @@ namespace ConsoleApp
                 Console.WriteLine("\n\t       Made with love by:\n\n");
                 Console.WriteLine("\t\tFrancisco Pires;\n");
                 Console.WriteLine("\t\tNuno Figueiredo.\n\n");
-                // Enquanto o jogador não clicar
+
+                // While the player doesn't click.
                 while (!Console.KeyAvailable)
                 {
                     Console.WriteLine("\tPress ESQ to retreat to the menu.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set the cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    // Apagar a linha anterior
+
+                    // Delete the line before.
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                     Console.WriteLine("\tPress     to retreat to the menu.");
                     Thread.Sleep(250);
-                    // Posicionar o cursor na linha anterior
+
+                    // Set the cursor in the line before.
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    // Apagar a linha anterior
+
+                    // Delete the line before.
                     Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
                         "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
                 }
-                // Variável que contem a opção do jogador
+
+                // The player's choice.
                 key = Console.ReadKey(true).Key;
 
-                if (key == ConsoleKey.Escape) retry = false;
-                else retry = true;
+                retry = key != ConsoleKey.Escape;
             }
-            while (retry == true);
+            while (retry);
         }
 
         /// <summary>
-        /// Sair do jogo.
+        /// Exit game.
         /// </summary>
         private void Exit()
         {
