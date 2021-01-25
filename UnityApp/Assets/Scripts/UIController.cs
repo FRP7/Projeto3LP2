@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UnityApp
@@ -39,14 +38,12 @@ namespace UnityApp
         public void ClickButton()
         {
             string support = piece.GetComponent<InputField>().text;
-            int convertPeca = -1;
-            int convertSlot = -1;
 
-            if (int.TryParse(support, out convertPeca))
+            if (int.TryParse(support, out int convertPeca))
             {
                 support = slot.GetComponent<InputField>().text;
 
-                if (int.TryParse(support, out convertSlot))
+                if (int.TryParse(support, out int convertSlot))
                 {
                     // hurray
                     gameManager.GetComponent<UnityGame>().Piece = convertPeca;

@@ -7,15 +7,19 @@ namespace UnityApp
     /// </summary>
     public class GameResult : MonoBehaviour
     {
+        // The result's scriptable object.
         [SerializeField]
         private ResultSO resultSO;
 
+        // The player UI.
         [SerializeField]
         private GameObject playerUI;
 
+        // The opponent UI.
         [SerializeField]
         private GameObject opponentUI;
 
+        // Awake is called before the game starts.
         private void Awake()
         {
             playerUI.SetActive(false);
@@ -27,12 +31,12 @@ namespace UnityApp
         {
             if (resultSO.HasPlayerWon)
             {
-                // mostrar UI de vitoria do jogador
+                // Show the victory UI of the player.
                 playerUI.SetActive(true);
             }
             else if (!resultSO.HasPlayerWon)
             {
-                // mostrar UI de vitoria do oponente
+                // Show the victory UI of the opponent.
                 opponentUI.SetActive(true);
             }
         }

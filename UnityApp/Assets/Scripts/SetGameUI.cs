@@ -1,13 +1,9 @@
-﻿// <copyright file="SetGameUI.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UnityApp
 {
-    using UnityEngine;
-    using UnityEngine.SceneManagement;
-    using UnityEngine.UI;
-
     /// <summary>
     /// Class the controls the UI in the SetGame scene.
     /// </summary>
